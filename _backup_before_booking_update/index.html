@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hana's Place</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome ikonokhoz (social ikonok) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Ezen az oldalon ne legyen “láthatatlan” scroll-animáció JS nélkül */
+        .scroll-animate { opacity: 1 !important; transform: none !important; }
+
+        main {
+            padding-top: 80px; /* a fix navbar helye */
+        }
+
+        .hero-intro {
+            padding: 2.5rem 1.5rem 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-intro h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-intro p {
+            max-width: 700px;
+            margin: 0.25rem auto;
+        }
+
+        .hero-banner {
+            margin: 2.5rem 0 2rem 0;
+            max-width: none;
+            position: relative;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+        }
+
+        .hero-banner img {
+            width: 100vw;
+            max-width: 100vw;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            margin-left: calc(-50vw + 50%);
+        }
+
+        .hero-banner .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.22);
+        }
+
+        .hero-banner .text {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 0 2px 8px #000;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .hero-banner .text span.sub {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-top: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Nyaraló Logó"></a>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" data-lang="home" class="active">Főoldal</a></li>
+            <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+            <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+            <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+            <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+        </ul>
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang-code="hu">HU</button>
+            <button class="lang-btn" data-lang-code="en">EN</button>
+            <button class="lang-btn" data-lang-code="de">DE</button>
+            <button class="lang-btn" data-lang-code="hr">HR</button>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Rövid bevezető szekció -->
+<section class="hero-intro scroll-animate">
+    <h1 data-lang="homepage_title">
+        Tengerparti apartmanok Žaborićban – Hana’s Place
+    </h1>
+
+    <p data-lang="homepage_intro1">
+        Modern, teljesen felszerelt apartmanok Horvátország egyik nyugodt tengerparti településén,
+        Šibenik közelében. Ideális választás pároknak, családoknak és hosszabb pihenéshez is.
+    </p>
+
+    <p data-lang="homepage_intro2">
+        Gyerekbarát és részben állatbarát szállás, privát parkolással, klímával és ingyenes WiFi-vel, 20 méterre a tengerparttól!
+    </p>
+</section>
+
+<section class="hero-banner scroll-animate" style="margin:2.5rem 0 2rem 0;max-width:none;border-radius:0;">
+    <div style="position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.13);border-radius:0;">
+        <img src="img2.jpg" alt="Tengerparti kilátás" style="width:100vw;max-width:100vw;height:320px;object-fit:cover;display:block;margin-left:calc(-50vw + 50%);">
+        <div style="position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.22);"></div>
+        <div style="position:absolute;left:0;top:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-shadow:0 2px 8px #000;font-size:2rem;font-weight:600;">
+        </div>
+    </div>
+</section>
+
+<!-- APARTMAN 1 -->
+<section class="apartman scroll-animate">
+    <div class="image">
+        <img src="apartman2.terasz.jpeg" alt="Apartman 1 – tengerparti apartman Žaborić">
+    </div>
+    <div class="text">
+        <h2 data-lang="apartment1">Apartman 1</h2>
+        <p data-lang="ap1_desc">
+            Tágas, világos és modern apartman párok és kisebb családok számára. Teljes felszereltséggel és klímával. Gyerekbarát kialakítással. Kis testű kutyát felár ellenében fogadunk.
+        </p>
+
+        <a href="apartman1.html" class="booking-cta" data-lang="ap1_cta">
+            Foglalás
+        </a>
+    </div>
+</section>
+
+<!-- APARTMAN 2 -->
+<section class="apartman reverse scroll-animate">
+    <div class="image">
+        <img src="apartman1.terasz.jpeg" alt="Apartman 2 – családbarát apartman Žaborić">
+    </div>
+    <div class="text">
+        <h2 data-lang="apartment2">Apartman 2</h2>
+        <p data-lang="ap2_desc">
+            Modern, jól felszerelt apartman családok számára. Mosogatógépes konyha, klíma, WiFi, gyerekbarát kialakítás. Kis testű kutyát felár ellenében fogadunk.
+        </p>
+
+        <a href="apartman2.html" class="booking-cta" data-lang="ap2_cta">
+            Foglalás
+        </a>
+    </div>
+</section>
+
+<!-- APARTMAN 3 -->
+<section class="apartman scroll-animate">
+    <div class="image">
+        <img src="apartman3.terasz2.jpeg" alt="Apartman 3 – prémium apartman Žaborić">
+    </div>
+    <div class="text">
+        <h2 data-lang="apartment3">Apartman 3</h2>
+        <p data-lang="ap3_desc">
+            Nagy méretű, prémium apartman, mely ideális nagyobb családok vagy baráti társaságok számára. Teljesen felszerelt konyhával és modern berendezéssel. Ez az apartman nem állatbarát.
+        </p>
+
+        <a href="apartman3.html" class="booking-cta" data-lang="ap3_cta">
+            Foglalás
+        </a>
+    </div>
+</section>
+
+    <!-- Kapcsolat űrlap -->
+    <section class="contact-form scroll-animate">
+        <h2 data-lang="contact">Kapcsolat</h2>
+        <form id="contactForm">
+            <input type="text" name="name" data-lang="name_placeholder" placeholder="Név" required>
+            <input type="email" name="email" data-lang="email_placeholder" placeholder="Email" required>
+            <textarea name="message" data-lang="message_placeholder" placeholder="Üzenet" required></textarea>
+            <button type="submit" data-lang="contact_send">Küldés</button>
+        </form>
+    </section>
+</main>
+
+<!-- EmailJS-t majd később beköthetjük, most nem kötelező -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+translations = window.translations || {};
+translations.hu = translations.hu || {};
+translations.en = translations.en || {};
+translations.de = translations.de || {};
+translations.hr = translations.hr || {};
+
+Object.assign(translations.en, {
+    homepage_title: "Seaside apartments in Žaborić – Hana’s Place",
+    homepage_intro1: "Modern, fully equipped apartments in one of Croatia’s peaceful seaside villages, near Šibenik. Ideal for couples, families and longer stays.",
+    homepage_intro2: "Child-friendly and partly pet-friendly accommodation with private parking, air conditioning and free WiFi, just 20 meters from the beach!",
+    ap1_desc: "Spacious, bright and modern apartment for couples and small families. Fully equipped and air-conditioned. Child-friendly design. Small dogs are accepted for an extra fee.",
+    ap1_cta: "Book now",
+    ap2_desc: "Modern, well-equipped apartment for families. Kitchen with dishwasher, air conditioning, WiFi, child-friendly design. Small dogs are accepted for an extra fee.",
+    ap2_cta: "Book now",
+    ap3_desc: "Large, premium apartment ideal for bigger families or groups of friends. Fully equipped kitchen and modern furnishings. This apartment is not pet-friendly.",
+    ap3_cta: "Book now",
+    contact: "Contact",
+    name_placeholder: "Name",
+    email_placeholder: "Email",
+    message_placeholder: "Message",
+    contact_send: "Send",
+    booking_calendar_title: "Booking calendar",
+    booking_selected_start_label: "Check-in date:",
+    booking_selected_end_label: "Check-out date:",
+    booking_form_title: "Reservation",
+    booking_checkin_label: "Check-in:",
+    booking_checkout_label: "Check-out:",
+    booking_name_label: "Name:",
+    booking_email_label: "Email address:",
+    booking_phone_label: "Phone number:",
+    booking_address_label: "Address:",
+    booking_message_label: "Message:",
+    booking_submit: "Send reservation request",
+    booking_none: "None",
+    booking_terms_required: "Please accept the Terms and Conditions.",
+    booking_save_error: "An error occurred while saving the booking.",
+    booking_email_success: "Booking sent successfully! We will contact you soon.",
+    booking_email_failure: "Booking saved, but email sending failed.",
+    accept_terms: "I have read and accept the Terms and Conditions.",
+    terms_link_text: "Download Terms and Conditions"
+});
+
+Object.assign(translations.de, {
+    homepage_title: "Ferienwohnungen am Meer in Žaborić – Hana’s Place",
+    homepage_intro1: "Moderne, komplett ausgestattete Apartments in einem der ruhigen Küstendörfer Kroatiens, nahe Šibenik. Ideal für Paare, Familien und längere Aufenthalte.",
+    homepage_intro2: "Kinderfreundliche und teilweise haustierfreundliche Unterkunft mit privatem Parkplatz, Klimaanlage und kostenlosem WLAN, nur 20 Meter vom Strand entfernt!",
+    ap1_desc: "Geräumiges, helles und modernes Apartment für Paare und kleine Familien. Voll ausgestattet und klimatisiert. Kinderfreundliche Gestaltung. Kleine Hunde werden gegen Aufpreis akzeptiert.",
+    ap1_cta: "Jetzt buchen",
+    ap2_desc: "Modernes, gut ausgestattetes Apartment für Familien. Küche mit Geschirrspüler, Klimaanlage, WLAN, kinderfreundliche Gestaltung. Kleine Hunde werden gegen Aufpreis akzeptiert.",
+    ap2_cta: "Jetzt buchen",
+    ap3_desc: "Großes Premium-Apartment, ideal für größere Familien oder Freundesgruppen. Voll ausgestattete Küche und moderne Einrichtung. Dieses Apartment ist nicht haustierfreundlich.",
+    ap3_cta: "Jetzt buchen",
+    contact: "Kontakt",
+    name_placeholder: "Name",
+    email_placeholder: "E-Mail",
+    message_placeholder: "Nachricht",
+    contact_send: "Senden",
+    booking_calendar_title: "Buchungskalender",
+    booking_selected_start_label: "Anreisedatum:",
+    booking_selected_end_label: "Abreisedatum:",
+    booking_form_title: "Buchung",
+    booking_checkin_label: "Anreise:",
+    booking_checkout_label: "Abreise:",
+    booking_name_label: "Name:",
+    booking_email_label: "E-Mail-Adresse:",
+    booking_phone_label: "Telefonnummer:",
+    booking_address_label: "Adresse:",
+    booking_message_label: "Nachricht:",
+    booking_submit: "Buchungsanfrage senden",
+    booking_none: "Keine",
+    booking_terms_required: "Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.",
+    booking_save_error: "Fehler beim Speichern der Buchung.",
+    booking_email_success: "Buchung erfolgreich gesendet! Wir melden uns bald.",
+    booking_email_failure: "Buchung gespeichert, aber E-Mail-Versand fehlgeschlagen.",
+    accept_terms: "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiere sie.",
+    terms_link_text: "Allgemeine Geschäftsbedingungen herunterladen"
+});
+
+Object.assign(translations.hu, {
+        homepage_intro2: "Gyerekbarát és részben állatbarát szállás, privát parkolással, klímával és ingyenes WiFi-vel, 20 méterre a tengerparttól!",
+        homepage_intro2: "Smještaj prilagođen djeci i djelomično kućnim ljubimcima, s privatnim parkingom, klimom i besplatnim WiFi-jem, samo 20 metara od plaže!",
+    ap1_desc: "Tágas, világos és modern apartman párok és kisebb családok számára. Teljes felszereltséggel és klímával. Gyerekbarát kialakítással. Kis testű kutyát felár ellenében fogadunk.",
+    ap2_desc: "Modern, jól felszerelt apartman családok számára. Mosogatógépes konyha, klíma, WiFi, gyerekbarát kialakítás. Kis testű kutyát felár ellenében fogadunk.",
+    ap3_desc: "Nagy méretű, prémium apartman, mely ideális nagyobb családok vagy baráti társaságok számára. Teljesen felszerelt konyhával és modern berendezéssel. Ez az apartman nem állatbarát.",
+    ap1_desc: "Prostran, svijetao i moderan apartman za parove i manje obitelji. Potpuno opremljen i klimatiziran. Dječja oprema. Malog psa primamo uz nadoplatu.",
+    ap1_cta: "Rezerviraj",
+    ap2_desc: "Moderan, dobro opremljen apartman za obitelji. Kuhinja s perilicom posuđa, klima, WiFi, dječja oprema. Malog psa primamo uz nadoplatu.",
+    ap2_cta: "Rezerviraj",
+    ap3_desc: "Veliki premium apartman, idealan za veće obitelji ili društvo prijatelja. Potpuno opremljena kuhinja i moderan namještaj. Ovaj apartman nije za kućne ljubimce.",
+    ap3_cta: "Rezerviraj",
+    contact: "Kontakt",
+    name_placeholder: "Ime",
+    email_placeholder: "E-mail",
+    message_placeholder: "Poruka",
+    contact_send: "Pošalji",
+    booking_calendar_title: "Kalendar rezervacija",
+    booking_selected_start_label: "Datum dolaska:",
+    booking_selected_end_label: "Datum odlaska:",
+    booking_form_title: "Rezervacija",
+    booking_checkin_label: "Dolazak:",
+    booking_checkout_label: "Odlazak:",
+    booking_name_label: "Ime:",
+    booking_email_label: "E-mail adresa:",
+    booking_phone_label: "Broj telefona:",
+    booking_address_label: "Adresa:",
+    booking_message_label: "Poruka:",
+    booking_submit: "Pošalji upit za rezervaciju",
+    booking_none: "Nema",
+    booking_terms_required: "Molimo prihvatite Opće uvjete.",
+    booking_save_error: "Došlo je do pogreške pri spremanju rezervacije.",
+    booking_email_success: "Rezervacija uspješno poslana! Kontaktirat ćemo vas uskoro.",
+    booking_email_failure: "Rezervacija je spremljena, ali slanje e-pošte nije uspjelo.",
+    accept_terms: "Pročitao/la sam i prihvaćam Opće uvjete.",
+    terms_link_text: "Preuzmi Opće uvjete"
+});
+
+    // Oldal betöltésekor állítsuk be a korábban választott nyelvet
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'hu';
+        if (typeof updateLanguage === 'function') {
+            updateLanguage(savedLang);
+        }
+    });
+</script>
+
+</body>
+</html>

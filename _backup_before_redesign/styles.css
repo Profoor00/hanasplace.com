@@ -1,0 +1,812 @@
+/* styles.css - Frissített, profi design finomított animációkkal */
+/* Animációk finomítása: lassabb időtartamok, kisebb skálázások, lágyabb effektek. */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #f5f5dc 0%, #deb887 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    animation: bodyFadeIn 1.2s ease-out;
+}
+
+@keyframes bodyFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #d2b48c;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    animation: titleSlideUp 1s ease-out;
+}
+
+@keyframes titleSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+p {
+    color: #555;
+}
+
+/* -----------------------------
+      NAVBAR
+------------------------------ */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(210, 180, 140, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    animation: navbarSlideDown 0.7s ease-out;
+}
+
+@keyframes navbarSlideDown {
+    from { transform: translateY(-50px); }
+    to { transform: translateY(0); }
+}
+
+.logo img {
+    height: 60px;
+    transition: transform 0.4s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.02);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.4s ease;
+}
+
+.nav-links a:hover {
+    background: #fff;
+    color: #d2b48c;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+/* -----------------------------
+    LANGUAGE SELECTOR (NYELV)
+------------------------------ */
+
+.lang-btn {
+    background: #f5f5dc;
+    color: #d2b48c;
+    border: 2px solid #d2b48c;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin: 0 0.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+.lang-btn:hover {
+    background: #d2b48c;
+    color: #fff;
+}
+
+.lang-btn.active {
+    background: #fff;
+    color: #d2b48c;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* -----------------------------
+       HAMBURGER MENÜ
+------------------------------ */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: all 0.4s ease;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    transition: all 0.4s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* -----------------------------
+        KÉPKARUSSZEL
+------------------------------ */
+
+.carousel {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    margin-top: 80px;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+    /* animation: carouselFadeIn 1.5s ease-out; */ /* Removed fade-in animation */
+}
+
+@keyframes carouselFadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.carousel img.active {
+    display: block;
+    opacity: 1;
+    animation: slideIn 1s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+/* -----------------------------
+      APARTMAN SZEKCIÓK
+------------------------------ */
+
+.apartman {
+    display: flex;
+    padding: 4rem 2rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease;
+}
+
+.apartman.reverse {
+    flex-direction: row-reverse;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease;
+}
+
+.apartman:hover {
+    transform: translateY(-3px);
+}
+
+.image {
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.image:hover img {
+    transform: scale(1.02);
+}
+
+.text {
+    width: 50%;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f5dc 0%, #fff 100%);
+    border-radius: 10px;
+    margin-left: 2rem; /* increased distance from image */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.apartman.reverse .image {
+    border-radius: 10px;
+}
+
+.apartman.reverse .text {
+    background: linear-gradient(135deg, #f5f5dc 0%, #fff 100%);
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    padding: 2rem;
+}
+
+@media (max-width: 900px) {
+    .apartman, .apartman.reverse {
+        flex-direction: column !important;
+    }
+    .apartman .text, .apartman.reverse .text {
+        margin: 1.5rem 0 0 0 !important;
+        width: 100%;
+    }
+    .apartman.reverse .text {
+        margin-right: 0 !important;
+    }
+
+    main {
+        padding-top: 180px !important; /* extra space for mobile navbar */
+    }
+}
+
+/* -----------------------------
+      KAPCSOLAT + ŰRLAPOK
+------------------------------ */
+
+.contact-form, .contact-page {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: rgba(210, 180, 140, 0.1);
+    border-radius: 15px;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+input, textarea {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border: 2px solid #d2b48c;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: all 0.4s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #deb887;
+    box-shadow: 0 0 8px rgba(222, 184, 135, 0.4);
+    outline: none;
+}
+
+button {
+    background: linear-gradient(135deg, #d2b48c 0%, #deb887 100%);
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+/* -----------------------------
+      GALÉRIA
+------------------------------ */
+
+.gallery {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 30%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.02);
+}
+
+/* -----------------------------
+      FOOTER
+------------------------------ */
+
+footer {
+    background: linear-gradient(135deg, #d2b48c 0%, #deb887 100%);
+    text-align: center;
+    padding: 2rem;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.social a {
+    color: #fff;
+    margin: 0 1.5rem;
+    font-size: 2rem;
+    transition: all 0.4s ease;
+}
+
+.social a:hover {
+    transform: scale(1.1);
+    color: #f5f5dc;
+}
+
+/* -----------------------------
+      RESPONSIVE DESIGN
+------------------------------ */
+
+@media (max-width: 1024px) {
+    .apartman {
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .image, .text {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .text {
+        margin-top: 1rem;
+    }
+
+    .carousel {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(210, 180, 140, 0.95);
+        width: 100%;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .carousel {
+        height: 300px;
+    }
+
+    form {
+        padding: 1rem;
+    }
+
+    footer {
+        padding: 1rem;
+    }
+
+    .social a {
+        font-size: 1.4rem;
+    }
+}
+
+/* -----------------------------
+      SCROLL ANIMÁCIÓ
+------------------------------ */
+
+.scroll-animate {
+    opacity: 1;
+    transform: none;
+    /* transition: all 0.6s ease-out; */ /* Removed for no animation */
+}
+
+/* .scroll-animate.in-view {  // Removed scroll animation
+    opacity: 1;
+    transform: translateY(0);
+} */
+
+/* GOOGLE MAP - Térképes nézet */
+.map-container {
+    width: 100%;
+    height: 400px;
+    margin: 2rem auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.map-directions {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.directions-btn {
+    display: inline-block;
+    background: #d2b48c;
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.directions-btn:hover {
+    background: #b8966c;
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        height: 250px;
+    }
+}
+
+/* ============================= */
+/*   F O G L A L Á S I   M O D U L   */
+/* ============================= */
+
+.booking-calendar, .booking-form {
+    background: rgba(255,255,255,0.9);
+    padding: 2.5rem;
+    margin: 3rem 0;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.booking-calendar h2, .booking-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #d2b48c;
+}
+
+.calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.calendar-box {
+    background: #f5f5dc;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 310px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    color: #8b6f47;
+    margin-bottom: 1rem;
+}
+
+.calendar-header button {
+    background: #d2b48c;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.calendar-header button:hover {
+    background: #b79972;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;  /* nagyobb távolság a cellák között */
+}
+
+
+.day {
+    padding: 12px 0;        /* nagyobb belső tér */
+    min-height: 42px;       /* fix magasság, hogy ne csússzon */
+    display: flex;          /* középre igazítás */
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    background: rgb(255, 255, 255);
+    border: 2px solid transparent;
+}
+
+.day.free:hover {
+    background: #f1e5c8;
+}
+
+.day.booked {
+    background: #ffccc9;
+    color: #8a1f1a;
+    cursor: not-allowed;
+}
+
+.day.start, .day.end {
+    background: #d2b48c !important;
+    color: white;
+    border-color: #b79972;
+}
+
+.day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.selected-dates {
+    margin-top: 1rem;
+    text-align: center;
+    color: #8b6f47;
+    font-size: 1.1rem;
+}
+
+
+.booking-form input,
+.booking-form textarea {
+    width: 100%;
+    margin: .5rem 0 1.2rem;
+    padding: 1rem;
+    border: 2px solid #d2b48c;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.booking-form textarea {
+    min-height: 120px;
+}
+
+.booking-form button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #d2b48c, #deb887);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.booking-form button:hover {
+    background: #c7a37c;
+    transform: scale(1.01);
+}
+
+/* Reszponzív */
+@media (max-width: 768px) {
+    .calendar-box {
+        width: 100%;
+    }
+}
+
+.day.inrange {
+    background: #ffb4b4 !important;
+    color: #7a1a1a;
+}
+
+.day.start,
+.day.end {
+    background: #d2b48c !important;
+    color: white;
+}
+
+/* VÉGLEGES NAPTÁR CELLÁK – MINDEN APARTMANRA */
+.booking-calendar .day {
+    padding: 12px 0 !important;
+    min-height: 48px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    background: #fff !important;
+    border: 2px solid transparent !important;
+}
+
+/* START és END dátum SOHA ne fehéredjen ki */
+.day.start,
+.day.end {
+    background: #d2b48c !important;
+    color: #fff !important;
+    border-color: #b79972 !important;
+}
+
+/* Hover, focus, active esetén is maradjon ilyen */
+.day.start:hover,
+.day.start:focus,
+.day.start:active,
+.day.end:hover,
+.day.end:focus,
+.day.end:active {
+    background: #d2b48c !important;
+    color: #fff !important;
+}
+
+/* ============================= */
+/*   F O G L A L Á S   C T A     */
+/* ============================= */
+
+.booking-cta {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(210, 180, 140, 0.6);
+    color: #d2b48c;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.booking-cta:hover {
+    background: #fff;
+    color: #d2b48c;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: scale(1.03);
+}
+
+main {
+    padding-top: 140px; /* increased from 80px for better visibility below navbar */
+}
+
+/* Responsive gallery and image fit for apartment pages */
+.apartment-detail .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 1.5rem 0 2.5rem 0;
+    background: #fff;
+    padding: 1.5rem 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.apartment-detail .gallery img {
+    width: 320px;
+    max-width: 95vw;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: #f5f5dc;
+    transition: transform 0.2s;
+}
+.apartment-detail .gallery img:hover {
+    transform: scale(1.03);
+}
+@media (max-width: 900px) {
+    .apartment-detail .gallery img {
+        width: 100%;
+        height: 180px;
+        max-width: 100vw;
+    }
+    .apartment-detail .gallery {
+        gap: 0.7rem;
+        padding: 1rem 0.2rem;
+    }
+}
+
+/* Match apartment gallery image background to Galéria beige */
+.apartment-detail .gallery img {
+    background: #d2b48c; 
+}
+
+/* Responsive programok image fit */
+.program-image {
+    background: #f5f5dc !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.program-image img {
+    width: 100%;
+    height: 220px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #f5f5dc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.2s;
+    display: block;
+}
+@media (max-width: 900px) {
+    .program-image img {
+        height: 160px;
+    }
+}
+@media (max-width: 600px) {
+    .program-image img {
+        height: 120px;
+    }
+}

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartman 1 – Hana’s Place, Žaborić</title>
+    <meta name="description" content="Apartman 1 Žaborićban: 3–4 fő, 1 hálószoba, 110 €/éj. Szabad időpontok és online foglalás.">
+    <meta name="theme-color" content="#15242A">
+    <link rel="icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar" aria-label="Hana’s Place">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Hana’s Place"><span class="logo-word">Hana’s Place</span></a>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" data-lang="home">Főoldal</a></li>
+            <li><a href="apartman1.html" data-lang="apartment1" class="active" aria-current="page">Apartman 1</a></li>
+            <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+            <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+            <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+            <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            <li class="nav-only-mobile"><a href="#booking" data-lang="nav_book">Foglalás</a></li>
+        </ul>
+        <div class="language-selector" role="group" aria-label="Nyelv / Language">
+            <button class="lang-btn active" type="button" data-lang-code="hu">HU</button>
+            <button class="lang-btn" type="button" data-lang-code="en">EN</button>
+            <button class="lang-btn" type="button" data-lang-code="de">DE</button>
+            <button class="lang-btn" type="button" data-lang-code="hr">HR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="#booking" data-lang="nav_book">Foglalás</a>
+        <button class="hamburger" id="hamburger" type="button" aria-controls="nav-links" aria-label="Menü" data-lang-aria="menu_label">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main>
+    <section class="apt-hero">
+        <img class="hero-media" src="apartman2.terasz.jpeg" alt="Apartman 1 – kilátás a teraszról" fetchpriority="high">
+        <div class="hero-shade"></div>
+        <div class="container apt-hero-inner">
+            <div>
+                <a class="crumb" href="index.html#apartments" data-lang="all_apartments">Összes apartman</a>
+                <h1 data-lang="apartment1">Apartman 1</h1>
+                <ul class="specs specs-light"><li data-lang="guests_34">3–4 fő</li><li data-lang="bedroom_1">1 hálószoba</li><li data-lang="pets_ok">Kis kutya hozható</li><li data-lang="parking_1">1 parkolóhely</li></ul>
+            </div>
+            <div class="hero-price">
+                <div><span class="price-big">110 €</span><span class="price-unit" data-lang="per_night">/ éj</span></div>
+                <a class="btn btn-primary" href="#booking" data-lang="check_availability">Szabad időpontok</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+    <div class="bento bento-3" data-lightbox>
+        <button type="button"><img src="apartman2.nappali.jpeg" alt="Apartman 1 – Nappali és étkező"></button>
+        <button type="button"><img src="apartman2.szoba.jpeg" alt="Apartman 1 – Hálószoba" loading="lazy"></button>
+        <button type="button"><img src="apartman2.konyha.jpeg" alt="Apartman 1 – Konyha" loading="lazy"></button>
+    </div>
+    </div>
+
+    <div class="container apt-body">
+        <div class="apt-main">
+            <p class="lead" data-lang="ap1_desc">Tágas, világos és modern apartman 3 fő részére (pótágyazható 4 fő részére), teljes felszereltséggel és klímával. Az apartman gyerekbarát kialakítású, valamint kis testű kutyával is foglalható. Nyugodt környezetben helyezkedik el, ideális kiindulópont Skradin, Trogir és a közeli tengerpartok felfedezéséhez.</p>
+            <h2 data-lang="amenities_title">Felszereltség</h2>
+            <div class="amenities">
+                <div class="amenity-group">
+                    <h3 data-lang="ap1_rooms_title">Szobák felszereltsége</h3>
+                    <ul>
+                        <li data-lang="ap1_room_item0">1 hálószoba</li>
+                        <li data-lang="ap1_room_item1">kényelmes ágy, ágynemű (heti csere)</li>
+                        <li data-lang="ap1_room_item2">klímaberendezés</li>
+                        <li data-lang="ap1_room_item3">TV</li>
+                        <li data-lang="ap1_room_item4">ingyenes WiFi</li>
+                    </ul>
+                </div>
+                <div class="amenity-group">
+                    <h3 data-lang="ap1_kitchen_title">Konyha felszereltsége</h3>
+                    <ul>
+                        <li data-lang="ap1_kitchen_item1">mosogatógép</li>
+                        <li data-lang="ap1_kitchen_item2">mikrohullámú sütő</li>
+                        <li data-lang="ap1_kitchen_item3">hűtőszekrény fagyasztóval</li>
+                        <li data-lang="ap1_kitchen_item4">kávéfőző (Dolce Gusto)</li>
+                        <li data-lang="ap1_kitchen_item5">vízforraló</li>
+                        <li data-lang="ap1_kitchen_item6">kenyérpirító</li>
+                        <li data-lang="ap1_kitchen_item7">airfryer</li>
+                    </ul>
+                </div>
+                <div class="amenity-group">
+                    <h3 data-lang="ap1_bathroom_title">Fürdőszoba</h3>
+                    <ul>
+                        <li data-lang="ap1_bathroom_item1">zuhanyzó</li>
+                        <li data-lang="ap1_bathroom_item2">hajszárító</li>
+                        <li data-lang="ap1_bathroom_item3">törölközők (heti csere)</li>
+                    </ul>
+                </div>
+                <div class="amenity-group">
+                    <h3 data-lang="ap1_kidsfriendly_title">Gyerekbarát felszereltség (kérésre)</h3>
+                    <ul>
+                        <li data-lang="ap1_kidsfriendly_item1">kiságy matraccal</li>
+                        <li data-lang="ap1_kidsfriendly_item2">etetőszék</li>
+                        <li data-lang="ap1_kidsfriendly_item3">székmagasító</li>
+                        <li data-lang="ap1_kidsfriendly_item4">baba fürdetőkád</li>
+                    </ul>
+                </div>
+                <div class="amenity-group">
+                    <h3 data-lang="ap1_services_title">Általános szolgáltatások</h3>
+                    <ul>
+                        <li data-lang="ap1_services_item1">1 ingyenes parkolóhely az apartmanhoz</li>
+                        <li data-lang="ap1_services_item2">heti törölköző- és ágyneműcsere</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <aside class="price-panel panel">
+            <h3 data-lang="ap1_prices_title">Árak és fizetés</h3>
+            <div><span class="price-big">110 €</span><span class="price-unit" data-lang="per_night">/ éj</span></div>
+            <div class="price-rows">
+                <div><span data-lang="cleaning_fee">Takarítás (egyszeri)</span><b>50 €</b></div>
+            </div>
+            <p data-lang="ap1_prices_tax">Idegenforgalmi adó külön fizetendő távozáskor.</p>
+            <p data-lang="ap1_prices_payment">Fizetés: online bankkártya vagy banki átutalás.</p>
+                <div class="pets-note">
+                    <h4 data-lang="ap1_pets_title">Állatbarát információk</h4>
+                    <p><span data-lang="ap1_pets_text">Kis testű kutya hozható. Felár: </span><strong data-lang="ap1_pets_price">20 €/nap</strong><span data-lang="ap1_pets_note">. Kaució fizetése kötelező.</span></p>
+                </div>
+            <a class="btn btn-primary btn-block" href="#booking" data-lang="check_availability">Szabad időpontok</a>
+        </aside>
+    </div>
+
+    <div class="container booking-wrap" id="booking">
+        <section class="booking-calendar">
+<h2 data-lang="booking_calendar_title">Foglalási naptár</h2>
+<div class="calendar-wrapper">
+<!-- 1. hónap -->
+<div class="calendar-box">
+<div class="calendar-header">
+<button aria-label="Előző hónap" id="prev1" type="button">‹</button>
+<span id="monthLabel1"></span>
+<button aria-label="Következő hónap" id="next1" type="button">›</button>
+</div>
+<div class="calendar-grid" id="calendar1"></div>
+</div>
+<!-- 2. hónap -->
+<div class="calendar-box">
+<div class="calendar-header">
+<button aria-label="Előző hónap" id="prev2" type="button">‹</button>
+<span id="monthLabel2"></span>
+<button aria-label="Következő hónap" id="next2" type="button">›</button>
+</div>
+<div class="calendar-grid" id="calendar2"></div>
+</div>
+</div>
+<div class="selected-dates">
+<p><span data-lang="booking_selected_start_label">Kezdő dátum:</span> <strong id="startDateText">Nincs</strong></p>
+<p><span data-lang="booking_selected_end_label">Befejező dátum:</span> <strong id="endDateText">Nincs</strong></p>
+</div>
+</section>
+
+        <section id="bookingFormSection" style="display:none;">
+            <h2 data-lang="booking_form_title">Foglalás</h2>
+            <form id="bookingForm">
+                <div class="field"><label data-lang="booking_checkin_label" for="checkin">Kezdés:</label><input id="checkin" name="checkin" readonly="" type="text"/></div>
+                <div class="field"><label data-lang="booking_checkout_label" for="checkout">Befejezés:</label><input id="checkout" name="checkout" readonly="" type="text"/></div>
+                <div class="field"><label data-lang="booking_name_label" for="name">Név:</label><input id="name" name="name" autocomplete="name" required="" type="text"/></div>
+                <div class="field"><label data-lang="booking_email_label" for="email">Email cím:</label><input id="email" name="email" autocomplete="email" required="" type="email"/></div>
+                <div class="field"><label data-lang="booking_phone_label" for="phone">Telefonszám:</label><input id="phone" name="phone" autocomplete="tel" required="" type="tel"/></div>
+                <div class="field"><label data-lang="booking_address_label" for="address">Lakcím:</label><input id="address" name="address" autocomplete="street-address" required="" type="text"/></div>
+                <div class="field field-wide"><label data-lang="booking_message_label" for="message">Üzenet:</label><textarea id="message" name="message" required=""></textarea></div>
+                <div class="terms-row">
+<label>
+<input id="acceptTerms" name="acceptTerms" type="checkbox"/>
+<span data-lang="accept_terms">Elolvastam és elfogadom az általános szerződési feltételeket.</span>
+</label>
+<a class="terms-download" data-lang="terms_link_text" href="terms_hu.html">Általános szerződési feltételek letöltése</a>
+</div>
+                <button data-lang="booking_submit" type="submit">Foglalás elküldése</button>
+            </form>
+        </section>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <img src="logo.png" alt="Hana’s Place" loading="lazy">
+            <p data-lang="footer_tagline">Családias tengerparti apartmanok Žaborićban, Šibenik mellett.</p>
+        </div>
+        <div>
+            <h3 data-lang="footer_apartments">Apartmanok</h3>
+            <ul>
+                <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+                <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+                <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 data-lang="footer_explore">Felfedezés</h3>
+            <ul>
+                <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+                <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+                <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 data-lang="contact">Kapcsolat</h3>
+            <ul>
+                <li><a href="mailto:apartman.hanasplace@gmail.com">apartman.hanasplace@gmail.com</a></li>
+                <li><a href="tel:+36303914439">+36 30 391 4439</a></li>
+                <li>Jasenova ulica 10, 22010 Žaborić</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <span>© <span id="year">2026</span> Hana’s Place, Žaborić</span>
+        <nav aria-label="Jogi információk">
+            <a href="terms_hu.html" data-legal="terms" data-lang="legal_terms">Általános szerződési feltételek</a>
+            <a href="cookie_policy_hu.html" data-legal="cookie_policy" data-lang="legal_cookie">Sütik szabályzata</a>
+        </nav>
+    </div>
+</footer>
+<script src="script.js"></script>
+<script src="site.js"></script>
+<script>
+    // Foglalási beállítások ehhez az apartmanhoz (az árat a szerver is ellenőrzi)
+    window.BOOKING_CONFIG = {
+        apartmentId: "ap1",
+        apartmentName: "Apartman 1",
+        nightlyPrice: 110,
+        cleaningFee: 50
+    };
+</script>
+<script src="booking.js"></script>
+<script>
+translations.hu = translations.hu || {};
+translations.en = translations.en || {};
+translations.de = translations.de || {};
+translations.hr = translations.hr || {};
+
+Object.assign(translations.hu, {
+  ap1_desc: "Tágas, világos és modern apartman 3 fő részére (pótágyazható 4 fő részére), teljes felszereltséggel és klímával. Az apartman gyerekbarát kialakítású, valamint kis testű kutyával is foglalható. Nyugodt környezetben helyezkedik el, ideális kiindulópont Skradin, Trogir és a közeli tengerpartok felfedezéséhez.",
+  ap1_room_item0: "1 hálószoba",
+  ap1_rooms_title: "Szobák felszereltsége",
+  ap1_room_item1: "kényelmes ágy, ágynemű (heti csere)",
+  ap1_room_item2: "klímaberendezés",
+  ap1_room_item3: "TV",
+  ap1_room_item4: "ingyenes WiFi",
+  ap1_kitchen_title: "Konyha felszereltsége",
+  ap1_kitchen_item1: "mosogatógép",
+  ap1_kitchen_item2: "mikrohullámú sütő",
+  ap1_kitchen_item3: "hűtőszekrény fagyasztóval",
+  ap1_kitchen_item4: "kávéfőző (Dolce Gusto)",
+  ap1_kitchen_item5: "vízforraló",
+  ap1_kitchen_item6: "kenyérpirító",
+  ap1_kitchen_item7: "airfryer",
+  ap1_bathroom_title: "Fürdőszoba",
+  ap1_bathroom_item1: "zuhanyzó",
+  ap1_bathroom_item2: "hajszárító",
+  ap1_bathroom_item3: "törölközők (heti csere)",
+  ap1_kidsfriendly_title: "Gyerekbarát felszereltség (kérésre)",
+    ap1_kidsfriendly_item1: "kiságy matraccal",
+    ap1_kidsfriendly_item2: "etetőszék",
+    ap1_kidsfriendly_item3: "székmagasító",
+    ap1_kidsfriendly_item4: "baba fürdetőkád",
+    ap1_services_title: "Általános szolgáltatások",
+    ap1_services_item1: "1 ingyenes parkolóhely az apartmanhoz",
+    ap1_services_item2: "heti törölköző- és ágyneműcsere",
+    ap1_pets_title: "Állatbarát információk",
+    ap1_pets_text: "Kis testű kutya hozható. Felár: ",
+    ap1_pets_price: "20 €/nap",
+    ap1_pets_note: ". Kaució fizetése kötelező.",
+    ap1_prices_title: "Árak és fizetés",
+    ap1_prices_price: "Ár: 110 €/éj",
+    ap1_prices_cleaning: "50 € takarítás",
+    ap1_prices_tax: "Idegenforgalmi adó külön fizetendő távozáskor.",
+    ap1_prices_payment: "Fizetés: online bankkártya vagy banki átutalás.",
+    booking_calendar_title: "Foglalási naptár",
+    booking_selected_start_label: "Kezdő dátum:",
+    booking_selected_end_label: "Befejező dátum:",
+    booking_form_title: "Foglalás",
+    booking_checkin_label: "Kezdés:",
+    booking_checkout_label: "Befejezés:",
+    booking_name_label: "Név:",
+    booking_email_label: "Email cím:",
+    booking_phone_label: "Telefonszám:",
+    booking_address_label: "Lakcím:",
+    booking_message_label: "Üzenet:",
+    booking_submit: "Foglalás elküldése",
+    booking_none: "Nincs",
+    booking_terms_required: "El kell fogadni az általános szerződési feltételeket.",
+    booking_save_error: "Hiba történt a foglalás mentésekor.",
+    booking_email_success: "Foglalás sikeresen elküldve! Hamarosan felvesszük veled a kapcsolatot.",
+    booking_email_failure: "A foglalás mentve lett, de az e-mail küldés nem sikerült.",
+    accept_terms: "Elolvastam és elfogadom az általános szerződési feltételeket.",
+    terms_link_text: "Általános szerződési feltételek letöltése"
+});
+
+Object.assign(translations.en, {
+  ap1_desc: "Spacious, bright and modern apartment for 3 people (can be extended to 4), fully equipped and air-conditioned. Child-friendly design, small dogs allowed. Located in a quiet area, ideal starting point for exploring Skradin, Trogir and nearby beaches.",
+  ap1_room_item0: "1 bedroom",
+  ap1_rooms_title: "Room amenities",
+  ap1_room_item1: "comfortable bed, bed linen (weekly change)",
+  ap1_room_item2: "air conditioning",
+  ap1_room_item3: "TV",
+  ap1_room_item4: "free WiFi",
+  ap1_kitchen_title: "Kitchen amenities",
+  ap1_kitchen_item1: "dishwasher",
+  ap1_kitchen_item2: "microwave oven",
+  ap1_kitchen_item3: "fridge with freezer",
+  ap1_kitchen_item4: "coffee maker (Dolce Gusto)",
+  ap1_kitchen_item5: "kettle",
+  ap1_kitchen_item6: "toaster",
+  ap1_kitchen_item7: "airfryer",
+  ap1_bathroom_title: "Bathroom",
+  ap1_bathroom_item1: "shower",
+  ap1_bathroom_item2: "hair dryer",
+  ap1_bathroom_item3: "towels (weekly change)",
+  ap1_kidsfriendly_title: "Child-friendly equipment (on request)",
+    ap1_kidsfriendly_item1: "baby cot with mattress",
+    ap1_kidsfriendly_item2: "high chair",
+    ap1_kidsfriendly_item3: "booster seat",
+    ap1_kidsfriendly_item4: "baby bath tub",
+    ap1_services_title: "General services",
+    ap1_services_item1: "1 free parking space for the apartment",
+    ap1_services_item2: "weekly towel and linen change",
+    ap1_services_item3: "cleaning €50, this is charged for every guest",
+    ap1_pets_title: "Pet information",
+    ap1_pets_text: "Small dog allowed. Extra fee: ",
+    ap1_pets_price: "20 €/day",
+    ap1_pets_note: ". Deposit required.",
+    ap1_prices_title: "Prices and payment",
+    ap1_prices_price: "Price: 110 €/night",
+    ap1_prices_cleaning: "50€ cleaning",
+    ap1_prices_tax: "Tourist tax payable separately upon departure.",
+    ap1_prices_payment: "Payment: online card payment or bank transfer.",
+    booking_calendar_title: "Booking calendar",
+    booking_selected_start_label: "Check-in date:",
+    booking_selected_end_label: "Check-out date:",
+    booking_form_title: "Reservation",
+    booking_checkin_label: "Check-in:",
+    booking_checkout_label: "Check-out:",
+    booking_name_label: "Name:",
+    booking_email_label: "Email address:",
+    booking_phone_label: "Phone number:",
+    booking_address_label: "Address:",
+    booking_message_label: "Message:",
+    booking_submit: "Send reservation request",
+    booking_none: "None",
+    booking_terms_required: "Please accept the Terms and Conditions.",
+    booking_save_error: "An error occurred while saving the booking.",
+    booking_email_success: "Booking sent successfully! We will contact you soon.",
+    booking_email_failure: "Booking saved, but email sending failed.",
+    accept_terms: "I have read and accept the Terms and Conditions.",
+    terms_link_text: "Download Terms and Conditions"
+});
+
+Object.assign(translations.de, {
+  ap1_desc: "Geräumiges, helles und modernes Apartment für 3 Personen (erweiterbar auf 4), komplett ausgestattet und klimatisiert. Kinderfreundliche Ausstattung, kleine Hunde erlaubt. Ruhige Lage, idealer Ausgangspunkt für Ausflüge nach Skradin, Trogir und zu den Stränden.",
+  ap1_room_item0: "1 Schlafzimmer",
+  ap1_rooms_title: "Zimmerausstattung",
+  ap1_room_item1: "bequemes Bett, Bettwäsche (wöchentlicher Wechsel)",
+  ap1_room_item2: "Klimaanlage",
+  ap1_room_item3: "TV",
+  ap1_room_item4: "kostenloses WLAN",
+  ap1_kitchen_title: "Küchenausstattung",
+  ap1_kitchen_item1: "Geschirrspüler",
+  ap1_kitchen_item2: "Mikrowelle",
+  ap1_kitchen_item3: "Kühlschrank mit Gefrierfach",
+  ap1_kitchen_item4: "Kaffeemaschine (Dolce Gusto)",
+  ap1_kitchen_item5: "Wasserkocher",
+  ap1_kitchen_item6: "Toaster",
+  ap1_kitchen_item7: "Airfryer",
+  ap1_bathroom_title: "Badezimmer",
+  ap1_bathroom_item1: "Dusche",
+  ap1_bathroom_item2: "Haartrockner",
+  ap1_bathroom_item3: "Handtücher (wöchentlicher Wechsel)",
+  ap1_kidsfriendly_title: "Kinderfreundliche Ausstattung (auf Anfrage)",
+    ap1_kidsfriendly_item1: "Babybett mit Matratze",
+    ap1_kidsfriendly_item2: "Hochstuhl",
+    ap1_kidsfriendly_item3: "Sitzerhöhung",
+    ap1_kidsfriendly_item4: "Babybadewanne",
+    ap1_services_title: "Allgemeine Dienstleistungen",
+    ap1_services_item1: "1 kostenloser Parkplatz für das Apartment",
+    ap1_services_item2: "wöchentlicher Handtuch- und Bettwäschewechsel",
+    ap1_pets_title: "Haustierinformation",
+    ap1_pets_text: "Kleiner Hund erlaubt. Aufpreis: ",
+    ap1_pets_price: "20 €/Tag",
+    ap1_pets_note: ". Kaution erforderlich.",
+    ap1_prices_title: "Preise und Zahlung",
+    ap1_prices_price: "Preis: 110 €/Nacht",
+    ap1_prices_cleaning: "50€ Reinigung",
+    ap1_prices_tax: "Kurtaxe separat bei Abreise zu zahlen.",
+    ap1_prices_payment: "Zahlung: Online-Kartenzahlung oder Banküberweisung.",
+    booking_calendar_title: "Buchungskalender",
+    booking_selected_start_label: "Anreisedatum:",
+    booking_selected_end_label: "Abreisedatum:",
+    booking_form_title: "Buchung",
+    booking_checkin_label: "Anreise:",
+    booking_checkout_label: "Abreise:",
+    booking_name_label: "Name:",
+    booking_email_label: "E-Mail-Adresse:",
+    booking_phone_label: "Telefonnummer:",
+    booking_address_label: "Adresse:",
+    booking_message_label: "Nachricht:",
+    booking_submit: "Buchungsanfrage senden",
+    booking_none: "Keine",
+    booking_terms_required: "Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.",
+    booking_save_error: "Fehler beim Speichern der Buchung.",
+    booking_email_success: "Buchung erfolgreich gesendet! Wir melden uns bald.",
+    booking_email_failure: "Buchung gespeichert, aber E-Mail-Versand fehlgeschlagen.",
+    accept_terms: "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiere sie.",
+    terms_link_text: "Allgemeine Geschäftsbedingungen herunterladen"
+});
+
+Object.assign(translations.hr, {
+  ap1_desc: "Prostran, svijetao i moderan apartman za 3 osobe (moguć pomoćni ležaj za 4.), potpuno opremljen i klimatiziran. Dječja oprema, mali pas dozvoljen. Mirna lokacija, idealna za istraživanje Skradina, Trogira i obližnjih plaža.",
+  ap1_room_item0: "1 spavaća soba",
+  ap1_rooms_title: "Oprema soba",
+  ap1_room_item1: "udoban krevet, posteljina (tjedna zamjena)",
+  ap1_room_item2: "klima uređaj",
+  ap1_room_item3: "TV",
+  ap1_room_item4: "besplatan WiFi",
+  ap1_kitchen_title: "Oprema kuhinje",
+  ap1_kitchen_item1: "perilica posuđa",
+  ap1_kitchen_item2: "mikrovalna pećnica",
+  ap1_kitchen_item3: "hladnjak sa zamrzivačem",
+  ap1_kitchen_item4: "aparat za kavu (Dolce Gusto)",
+  ap1_kitchen_item5: "kuhalo za vodu",
+  ap1_kitchen_item6: "toster",
+  ap1_kitchen_item7: "airfryer",
+  ap1_bathroom_title: "Kupaonica",
+  ap1_bathroom_item1: "tuš",
+  ap1_bathroom_item2: "sušilo za kosu",
+  ap1_bathroom_item3: "ručnici (tjedna zamjena)",
+  ap1_kidsfriendly_title: "Dječja oprema (na zahtjev)",
+    ap1_kidsfriendly_item1: "dječji krevetić s madracem",
+    ap1_kidsfriendly_item2: "dječja hranilica",
+    ap1_kidsfriendly_item3: "povišenje za stolicu",
+    ap1_kidsfriendly_item4: "kadica za bebe",
+    ap1_services_title: "Opće usluge",
+    ap1_services_item1: "1 besplatno parkirno mjesto za apartman",
+    ap1_services_item2: "tjedna promjena ručnika i posteljine",
+    ap1_pets_title: "Informacije o kućnim ljubimcima",
+    ap1_pets_text: "Mali pas dozvoljen. Nadoplata: ",
+    ap1_pets_price: "20 €/dan",
+    ap1_pets_note: ". Obavezan polog.",
+    ap1_prices_title: "Cijene i plaćanje",
+    ap1_prices_price: "Cijena: 110 €/noć",
+    ap1_prices_cleaning: "50€ čišćenje",
+    ap1_prices_tax: "Boravišna pristojba plaća se posebno pri odlasku.",
+    ap1_prices_payment: "Plaćanje: online karticom ili bankovnom uplatom.",
+    booking_calendar_title: "Kalendar rezervacija",
+    booking_selected_start_label: "Datum dolaska:",
+    booking_selected_end_label: "Datum odlaska:",
+    booking_form_title: "Rezervacija",
+    booking_checkin_label: "Dolazak:",
+    booking_checkout_label: "Odlazak:",
+    booking_name_label: "Ime:",
+    booking_email_label: "E-mail adresa:",
+    booking_phone_label: "Broj telefona:",
+    booking_address_label: "Adresa:",
+    booking_message_label: "Poruka:",
+    booking_submit: "Pošalji upit za rezervaciju",
+    booking_none: "Nema",
+    booking_terms_required: "Molimo prihvatite Opće uvjete.",
+    booking_save_error: "Došlo je do pogreške pri spremanju rezervacije.",
+    booking_email_success: "Rezervacija uspješno poslana! Kontaktirat ćemo vas uskoro.",
+    booking_email_failure: "Rezervacija je spremljena, ali slanje e-pošte nije uspjelo.",
+    accept_terms: "Pročitao/la sam i prihvaćam Opće uvjete.",
+    terms_link_text: "Preuzmi Opće uvjete"
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('lang') || 'hu';
+    if (typeof updateLanguage === 'function') {
+        updateLanguage(savedLang);
+    }
+});
+</script>
+</body>
+</html>

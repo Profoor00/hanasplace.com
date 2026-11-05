@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programok a közelben – Žaborić és környéke</title>
+
+    <!-- Globális stílusok -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Scroll animáció kikapcsolása JS nélkül ezen az oldalon -->
+    <style>
+        .scroll-animate {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        main {
+            padding: 120px 1.5rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .program-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: rgba(255,255,255,0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .program-intro h1 {
+            margin-bottom: 1rem;
+        }
+
+        .program-intro p {
+            max-width: 800px;
+            margin: 0.25rem auto;
+        }
+
+        .program-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .program-card {
+            display: flex;
+            gap: 1.5rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            align-items: stretch;
+        }
+
+        .program-image {
+            width: 35%;
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 180px;
+            background: #ddd;
+        }
+
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .program-content {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .program-content h2 {
+            margin-bottom: 0.25rem;
+        }
+
+        .program-meta {
+            font-size: 0.95rem;
+            color: #777;
+            white-space: pre-line; /* hogy a \n sortörés működjön */
+        }
+
+        .program-tags {
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .program-tags span {
+            display: inline-block;
+            background: #f5f5dc;
+            color: #8b6f47;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            margin-right: 0.4rem;
+            margin-top: 0.25rem;
+        }
+
+        .info-note {
+            margin-top: 2.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .program-card {
+                flex-direction: column;
+            }
+            .program-image, .program-content {
+                width: 100%;
+            }
+            main {
+                padding: 110px 1rem 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .program-card {
+                padding: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Nyaraló logó"></a>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" data-lang="home">Főoldal</a></li>
+            <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+            <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+            <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            <li><a href="programok.html" class="active" data-lang="programs">Programok a közelben</a></li>
+            <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+        </ul>
+
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang-code="hu">HU</button>
+            <button class="lang-btn" data-lang-code="en">EN</button>
+            <button class="lang-btn" data-lang-code="de">DE</button>
+            <button class="lang-btn" data-lang-code="hr">HR</button>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- Bevezető blokk -->
+    <section class="program-intro scroll-animate">
+        <h1 data-lang="programs_title">Programok a közelben</h1>
+        <p data-lang="programs_intro_1">
+            Žaborić ideális kiindulópont, ha szeretnéd felfedezni Észak-Dalmácia legszebb részeit.
+        </p>
+        <p data-lang="programs_intro_2">
+            Az alábbi programok mind körülbelül 100 km-es körön belül találhatók, így könnyedén beiktathatók egy fél- vagy egész napos kirándulásként.
+        </p>
+    </section>
+
+    <section class="program-list">
+
+        <!-- 1. Šibenik óváros & katedrális -->
+        <article class="program-card scroll-animate">
+            <div class="program-image">
+                <img src="sibenik-old-town.jpg" alt="Šibenik óvárosa és Szent Jakab-katedrális">
+            </div>
+            <div class="program-content">
+                <h2 data-lang="prog1_title">
+                    Šibenik óvárosa &amp; Szent Jakab-katedrális (UNESCO)
+                </h2>
+                <p data-lang="prog1_text1">
+                    Šibenik hangulatos óvárosa szűk, kanyargó utcákkal, kőházakkal és tengerre néző terekkel vár. Itt található a Szent Jakab-katedrális is, amely különleges, teljes egészében kőből épült reneszánsz mestermű, és az UNESCO Világörökség része.
+                </p>
+                <p data-lang="prog1_text2">
+                    Tökéletes délutáni program egy könnyű városi sétával, kávézással, fagyizással a tengerparti sétányon.
+                </p>
+                <p class="program-meta" data-lang="prog1_meta">
+                    Távolság: kb. 12–15 km Žaborićtól / ~15–20 perc autóval
+                    Ajánlott: pároknak, családoknak, városnézés kedvelőinek
+                </p>
+                <div class="program-tags">
+                    <span data-lang="prog1_tag1">Városnézés</span>
+                    <span data-lang="prog1_tag2">UNESCO</span>
+                    <span data-lang="prog1_tag3">Kultúra</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 2. Szent Miklós-erőd -->
+        <article class="program-card scroll-animate">
+            <div class="program-image">
+                <img src="st-michael-fortress.jpg" alt="Szent Miklós-erőd Šibenikben">
+            </div>
+            <div class="program-content">
+                <h2 data-lang="prog2_title">Szent Miklós-erőd – panoráma Šibenik fölött</h2>
+                <p data-lang="prog2_text1">
+                    A Szent Miklós-erőd Šibenik legrégebbi vára, közvetlenül az óváros felett, egy domb tetején áll. Innen lenyűgöző kilátás nyílik az egész városra, a Krka folyó torkolatára és a szigetvilágra. Nyáron gyakran tartanak koncerteket és rendezvényeket is az erőd szabadtéri színpadán.
+                </p>
+                <p class="program-meta" data-lang="prog2_meta">
+                    Távolság: kb. 15 km Žaborićtól / ~20–25 perc autóval + rövid séta az óvárosból
+                    Ajánlott: akik szeretik a kilátókat, történelmet, naplemente nézést
+                </p>
+                <div class="program-tags">
+                    <span data-lang="prog2_tag1">Panoráma</span>
+                    <span data-lang="prog2_tag2">Történelem</span>
+                    <span data-lang="prog2_tag3">Naplemente</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 3. Krka Nemzeti Park -->
+        <article class="program-card scroll-animate">
+            <div class="program-image">
+                <img src="krka-waterfalls.jpg" alt="Krka Nemzeti Park, vízesések">
+            </div>
+            <div class="program-content">
+                <h2 data-lang="prog3_title">Krka Nemzeti Park – vízesések és zöld völgyek</h2>
+                <p data-lang="prog3_text1">
+                    A Krka Nemzeti Park Horvátország egyik legismertebb látványossága. A Skradinski buk vízesésrendszer, a folyó fölött átívelő hidak, a zöld völgy és a hajókirándulások igazán különleges élményt nyújtanak. A park főbejárata a közeli Skradin településnél található, Šibeniktől mindössze nagyjából félórányi útra.
+                </p>
+                <p class="program-meta" data-lang="prog3_meta">
+                    Távolság: kb. 35–40 km Žaborićtól (Šibenik–Skradin irányában)
+                    Ajánlott: természetkedvelőknek, családoknak, fotózáshoz
+                </p>
+                <div class="program-tags">
+                    <span data-lang="prog3_tag1">Nemzeti park</span>
+                    <span data-lang="prog3_tag2">Vízesések</span>
+                    <span data-lang="prog3_tag3">Kirándulás</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 4. Aquapark Dalmatia -->
+        <article class="program-card scroll-animate">
+            <div class="program-image">
+                <img src="aquapark-dalmatia.jpg" alt="Aquapark Dalmatia Šibenik mellett">
+            </div>
+            <div class="program-content">
+                <h2 data-lang="prog4_title">Aquapark Dalmatia – vízi élménypark Šibenik mellett</h2>
+                <p data-lang="prog4_text1">
+                    Az Aquapark Dalmatia az Amadria Park üdülőkomplexum része Šibenik közelében. Családbarát vízi vidámpark csúszdákkal, medencékkel, hullámmedencével és „Lazy River” pihenőfolyóval – igazi egész napos program gyerekekkel is.
+                </p>
+                <p class="program-meta" data-lang="prog4_meta">
+                    Távolság: kb. 20 km Žaborićtól / ~20–25 perc autóval
+                    Ajánlott: családoknak, baráti társaságoknak, gyerekekkel utazóknak
+                </p>
+                <div class="program-tags">
+                    <span data-lang="prog4_tag1">Vízipark</span>
+                    <span data-lang="prog4_tag2">Családi program</span>
+                    <span data-lang="prog4_tag3">Gyerekbarát</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 5. Primošten -->
+        <article class="program-card scroll-animate">
+            <div class="program-image">
+                <img src="primosten.jpg" alt="Primošten óvárosa és strandjai">
+            </div>
+            <div class="program-content">
+                <h2 data-lang="prog5_title">Primošten – félszigeti óváros és kavicsos strandok</h2>
+                <p data-lang="prog5_text1">
+                    Primošten egy jellegzetes dalmát kisváros, amely egy félszigeten terül el. Kőházai, szűk utcái és a tengerparti sétányok igazi mediterrán hangulatot árasztanak. A környéken több szép, tiszta vizű kavicsos strand is található, így a városnézés könnyen összeköthető strandolással.
+                </p>
+                <p class="program-meta" data-lang="prog5_meta">
+                    Távolság: kb. 17 km Žaborićtól / ~15–20 perc autóval
+                    Ajánlott: pároknak, családoknak, fürdőzéshez és esti sétához
+                </p>
+                <div class="program-tags">
+                    <span data-lang="prog5_tag1">Strand</span>
+                    <span data-lang="prog5_tag2">Óváros</span>
+                    <span data-lang="prog5_tag3">Gasztronómia</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 6. Čikola-kanyon zipline -->
+        <article class="program-card scroll-animate">
+            <div class="program-image">
+                <img src="cikola-zipline.jpg" alt="Zipline a Čikola-kanyon felett">
+            </div>
+            <div class="program-content">
+                <h2 data-lang="prog6_title">Čikola-kanyon zipline – adrenalin a szurdok felett</h2>
+                <p data-lang="prog6_text1">
+                    A Čikola folyó mély kanyonja Šibeniktől nem messze található, és az itt kiépített zipline-pálya igazi adrenalinbomba: több szakaszon, akár 70 km/órás sebességgel „repülhetsz” a völgy felett, nagy magasságban. A panoráma lélegzetelállító, a program pedig szervezett, biztonságos felszereléssel zajlik.
+                </p>
+                <p class="program-meta" data-lang="prog6_meta">
+                    Távolság: kb. 45–50 km Žaborićtól
+                    Ajánlott: aktív pihenéshez, adrenalin kedvelőknek, nagyobb gyerekekkel/fiatalokkal
+                </p>
+                <div class="program-tags">
+                    <span data-lang="prog6_tag1">Adrenalin</span>
+                    <span data-lang="prog6_tag2">Természet</span>
+                    <span data-lang="prog6_tag3">Kaland</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 7. Kornati-szigetek hajókirándulással -->
+        <article class="program-card scroll-animate">
+            <div class="program-image">
+                <img src="kornati-boat.jpg" alt="Hajókirándulás a Kornati-szigetekre">
+            </div>
+            <div class="program-content">
+                <h2 data-lang="prog7_title">Kornati-szigetek – hajókirándulás a szigetlabirintusba</h2>
+                <p data-lang="prog7_text1">
+                    A Kornati Nemzeti Park egy különleges szigetcsoport, több tucat szigettel, sziklaszirtekkel és kristálytiszta öblökkel. Számos helyi hajóstársaság indít egész napos kirándulásokat Šibenikből és környékéről, amelyek során fürdőzéssel, ebéddel és szigetsétával egybekötött tengeri túrán vehetsz részt.
+                </p>
+                <p class="program-meta" data-lang="prog7_meta">
+                    Indulás jellemzően: Šibenik kikötő, Amadria Park vagy közeli városkák
+                    Ajánlott: egész napos kirándulásként családnak, pároknak, baráti társaságnak
+                </p>
+                <div class="program-tags">
+                    <span data-lang="prog7_tag1">Hajókirándulás</span>
+                    <span data-lang="prog7_tag2">Nemzeti park</span>
+                    <span data-lang="prog7_tag3">Egész napos program</span>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <p class="info-note" data-lang="programs_note">
+        A megadott távolságok és menetidők hozzávetőlegesek, autóval értendők. A programok elérhetőségét,
+        nyitvatartását és aktuális jegyárait indulás előtt érdemes online ellenőrizni.
+    </p>
+
+</main>
+
+<!-- A régi script.js – benne az updateLanguage + alap translations -->
+<script src="script.js"></script>
+
+<!-- Itt bővítjük ki a translations objektumot 4 nyelvre ehhez az oldalhoz -->
+<script>
+    // Ha a script.js-ben még nincs translations, semmi se működne – feltételezzük, hogy ott van
+    // Biztonság kedvéért bővítjük / létrehozzuk a nyelveket:
+
+    translations.hu = translations.hu || {};
+    translations.en = translations.en || {};
+    translations.de = translations.de || {};
+    translations.hr = translations.hr || {};
+
+    Object.assign(translations.hu, {
+        programs: "Programok a közelben",
+        programs_title: "Programok a közelben",
+        programs_intro_1: "Žaborić ideális kiindulópont, ha szeretnéd felfedezni Észak-Dalmácia legszebb részeit.",
+        programs_intro_2: "Az alábbi programok mind körülbelül 100 km-es körön belül találhatók, így könnyedén beiktathatók egy fél- vagy egész napos kirándulásként.",
+
+        prog1_title: "Šibenik óvárosa & Szent Jakab-katedrális (UNESCO)",
+        prog1_text1: "Šibenik hangulatos óvárosa szűk, kanyargó utcákkal, kőházakkal és tengerre néző terekkel vár. Itt található a Szent Jakab-katedrális is, amely különleges, teljes egészében kőből épült reneszánsz mestermű, és az UNESCO Világörökség része.",
+        prog1_text2: "Tökéletes délutáni program egy könnyű városi sétával, kávézással, fagyizással a tengerparti sétányon.",
+        prog1_meta: "Távolság: kb. 12–15 km Žaborićtól / ~15–20 perc autóval\nAjánlott: pároknak, családoknak, városnézés kedvelőinek",
+        prog1_tag1: "Városnézés",
+        prog1_tag2: "UNESCO",
+        prog1_tag3: "Kultúra",
+
+        prog2_title: "Szent Miklós-erőd – panoráma Šibenik fölött",
+        prog2_text1: "A Szent Miklós-erőd Šibenik legrégebbi vára, közvetlenül az óváros felett, egy domb tetején áll. Innen lenyűgöző kilátás nyílik az egész városra, a Krka folyó torkolatára és a szigetvilágra. Nyáron gyakran tartanak koncerteket és rendezvényeket is az erőd szabadtéri színpadán.",
+        prog2_meta: "Távolság: kb. 15 km Žaborićtól / ~20–25 perc autóval + rövid séta az óvárosból\nAjánlott: akik szeretik a kilátókat, történelmet, naplemente nézést",
+        prog2_tag1: "Panoráma",
+        prog2_tag2: "Történelem",
+        prog2_tag3: "Naplemente",
+
+        prog3_title: "Krka Nemzeti Park – vízesések és zöld völgyek",
+        prog3_text1: "A Krka Nemzeti Park Horvátország egyik legismertebb látványossága. A Skradinski buk vízesésrendszer, a folyó fölött átívelő hidak, a zöld völgy és a hajókirándulások igazán különleges élményt nyújtanak. A park főbejárata a közeli Skradin településnél található, Šibeniktől mindössze nagyjából félórányi útra.",
+        prog3_meta: "Távolság: kb. 35–40 km Žaborićtól (Šibenik–Skradin irányában)\nAjánlott: természetkedvelőknek, családoknak, fotózáshoz",
+        prog3_tag1: "Nemzeti park",
+        prog3_tag2: "Vízesések",
+        prog3_tag3: "Kirándulás",
+
+        prog4_title: "Aquapark Dalmatia – vízi élménypark Šibenik mellett",
+        prog4_text1: "Az Aquapark Dalmatia az Amadria Park üdülőkomplexum része Šibenik közelében. Családbarát vízi vidámpark csúszdákkal, medencékkel, hullámmedencével és „Lazy River” pihenőfolyóval – igazi egész napos program gyerekekkel is.",
+        prog4_meta: "Távolság: kb. 20 km Žaborićtól / ~20–25 perc autóval\nAjánlott: családoknak, baráti társaságoknak, gyerekekkel utazóknak",
+        prog4_tag1: "Vízipark",
+        prog4_tag2: "Családi program",
+        prog4_tag3: "Gyerekbarát",
+
+        prog5_title: "Primošten – félszigeti óváros és kavicsos strandok",
+        prog5_text1: "Primošten egy jellegzetes dalmát kisváros, amely egy félszigeten terül el. Kőházai, szűk utcái és a tengerparti sétányok igazi mediterrán hangulatot árasztanak. A környéken több szép, tiszta vizű kavicsos strand is található, így a városnézés könnyen összeköthető strandolással.",
+        prog5_meta: "Távolság: kb. 17 km Žaborićtól / ~15–20 perc autóval\nAjánlott: pároknak, családoknak, fürdőzéshez és esti sétához",
+        prog5_tag1: "Strand",
+        prog5_tag2: "Óváros",
+        prog5_tag3: "Gasztronómia",
+
+        prog6_title: "Čikola-kanyon zipline – adrenalin a szurdok felett",
+        prog6_text1: "A Čikola folyó mély kanyonja Šibeniktől nem messze található, és az itt kiépített zipline-pálya igazi adrenalinbomba: több szakaszon, akár 70 km/órás sebességgel „repülhetsz” a völgy felett, nagy magasságban. A panoráma lélegzetelállító, a program pedig szervezett, biztonságos felszereléssel zajlik.",
+        prog6_meta: "Távolság: kb. 45–50 km Žaborićtól\nAjánlott: aktív pihenéshez, adrenalin kedvelőknek, nagyobb gyerekekkel/fiatalokkal",
+        prog6_tag1: "Adrenalin",
+        prog6_tag2: "Természet",
+        prog6_tag3: "Kaland",
+
+        prog7_title: "Kornati-szigetek – hajókirándulás a szigetlabirintusba",
+        prog7_text1: "A Kornati Nemzeti Park egy különleges szigetcsoport, több tucat szigettel, sziklaszirtekkel és kristálytiszta öblökkel. Számos helyi hajóstársaság indít egész napos kirándulásokat Šibenikből és környékéről, amelyek során fürdőzéssel, ebéddel és szigetsétával egybekötött tengeri túrán vehetsz részt.",
+        prog7_meta: "Indulás jellemzően: Šibenik kikötő, Amadria Park vagy közeli városkák\nAjánlott: egész napos kirándulásként családnak, pároknak, baráti társaságnak",
+        prog7_tag1: "Hajókirándulás",
+        prog7_tag2: "Nemzeti park",
+        prog7_tag3: "Egész napos program",
+
+        programs_note: "A megadott távolságok és menetidők hozzávetőlegesek, autóval értendők. A programok elérhetőségét, nyitvatartását és aktuális jegyárait indulás előtt érdemes online ellenőrizni."
+    });
+
+    Object.assign(translations.en, {
+        programs: "Activities nearby",
+        programs_title: "Activities nearby",
+        programs_intro_1: "Žaborić is an ideal starting point if you want to discover the most beautiful parts of Northern Dalmatia.",
+        programs_intro_2: "The following activities are all located within roughly 100 km, so they are perfect for a half or full-day trip.",
+
+        prog1_title: "Šibenik Old Town & St. James Cathedral (UNESCO)",
+        prog1_text1: "The charming Old Town of Šibenik awaits with narrow, winding streets, stone houses and squares with sea views. Here you will also find St. James Cathedral, a unique Renaissance masterpiece built entirely from stone and listed as a UNESCO World Heritage Site.",
+        prog1_text2: "It’s a perfect afternoon plan with an easy city walk, coffee and ice cream along the seafront promenade.",
+        prog1_meta: "Distance: approx. 12–15 km from Žaborić / ~15–20 minutes by car\nRecommended for: couples, families, city sightseeing lovers",
+        prog1_tag1: "Sightseeing",
+        prog1_tag2: "UNESCO",
+        prog1_tag3: "Culture",
+
+        prog2_title: "St. Michael’s Fortress – panorama above Šibenik",
+        prog2_text1: "St. Michael’s Fortress is the oldest fortress in Šibenik, located on a hill directly above the Old Town. From here you have stunning views over the city, the Krka river estuary and the nearby islands. In summer, concerts and events are often held in the open-air venue inside the fortress.",
+        prog2_meta: "Distance: approx. 15 km from Žaborić / ~20–25 minutes by car + a short walk from the Old Town\nRecommended for: those who love viewpoints, history and sunsets",
+        prog2_tag1: "Panorama",
+        prog2_tag2: "History",
+        prog2_tag3: "Sunset",
+
+        prog3_title: "Krka National Park – waterfalls and green valleys",
+        prog3_text1: "Krka National Park is one of Croatia’s most famous attractions. The Skradinski buk waterfalls, the bridges over the river, the green valley and the boat trips offer a truly special experience. The main entrance is near the town of Skradin, about half an hour’s drive from Šibenik.",
+        prog3_meta: "Distance: approx. 35–40 km from Žaborić (direction Šibenik–Skradin)\nRecommended for: nature lovers, families, photography",
+        prog3_tag1: "National park",
+        prog3_tag2: "Waterfalls",
+        prog3_tag3: "Hiking",
+
+        prog4_title: "Aquapark Dalmatia – water park near Šibenik",
+        prog4_text1: "Aquapark Dalmatia is part of the Amadria Park resort near Šibenik. It is a family-friendly water park with slides, pools, a wave pool and a lazy river – a perfect full-day program, especially with children.",
+        prog4_meta: "Distance: approx. 20 km from Žaborić / ~20–25 minutes by car\nRecommended for: families, groups of friends, guests with children",
+        prog4_tag1: "Water park",
+        prog4_tag2: "Family fun",
+        prog4_tag3: "Kids-friendly",
+
+        prog5_title: "Primošten – peninsula Old Town and pebble beaches",
+        prog5_text1: "Primošten is a typical Dalmatian town located on a small peninsula. Its stone houses, narrow streets and seaside promenades create a truly Mediterranean atmosphere. Several beautiful, crystal-clear pebble beaches can be found nearby, so you can easily combine sightseeing with a beach day.",
+        prog5_meta: "Distance: approx. 17 km from Žaborić / ~15–20 minutes by car\nRecommended for: couples, families, beach days and evening walks",
+        prog5_tag1: "Beach",
+        prog5_tag2: "Old Town",
+        prog5_tag3: "Gastronomy",
+
+        prog6_title: "Čikola Canyon zipline – adrenaline above the gorge",
+        prog6_text1: "The deep canyon of the Čikola river lies not far from Šibenik, and the zipline course built here is a real adrenaline hit: on several sections you can ‘fly’ above the valley at speeds of up to around 70 km/h, at great height. The panorama is breathtaking and the activity is organised with professional safety equipment.",
+        prog6_meta: "Distance: approx. 45–50 km from Žaborić\nRecommended for: active holidays, adrenaline lovers, older kids/teens",
+        prog6_tag1: "Adrenaline",
+        prog6_tag2: "Nature",
+        prog6_tag3: "Adventure",
+
+        prog7_title: "Kornati Islands – boat trip into the island labyrinth",
+        prog7_text1: "The Kornati National Park is a unique archipelago with dozens of islands, cliffs and crystal-clear bays. Local boat companies offer full-day excursions from Šibenik and the surrounding area, including swimming stops, lunch and island walks.",
+        prog7_meta: "Departure usually from: Šibenik harbour, Amadria Park or nearby towns\nRecommended for: full-day trips for families, couples, groups of friends",
+        prog7_tag1: "Boat trip",
+        prog7_tag2: "National park",
+        prog7_tag3: "Full-day program",
+
+        programs_note: "Distances and travel times are approximate and refer to car travel. Please check availability, opening hours and ticket prices online before your visit."
+    });
+
+    Object.assign(translations.de, {
+        programs: "Ausflugsziele in der Nähe",
+        programs_title: "Ausflugsziele in der Nähe",
+        programs_intro_1: "Žaborić ist ein idealer Ausgangspunkt, um die schönsten Ecken Norddalmatiens zu entdecken.",
+        programs_intro_2: "Die folgenden Ausflugsziele liegen alle in einem Radius von etwa 100 km und eignen sich perfekt für Halb- oder Ganztagestouren.",
+
+        prog1_title: "Altstadt von Šibenik & Kathedrale des Heiligen Jakob (UNESCO)",
+        prog1_text1: "Die stimmungsvolle Altstadt von Šibenik erwartet dich mit engen, verwinkelten Gassen, Steinhäusern und Plätzen mit Blick auf das Meer. Hier befindet sich auch die Jakobskathedrale, ein einzigartiges Renaissancebauwerk aus Stein, das zum UNESCO-Welterbe gehört.",
+        prog1_text2: "Ideal für einen entspannten Nachmittagsspaziergang mit Kaffee und Eis entlang der Uferpromenade.",
+        prog1_meta: "Entfernung: ca. 12–15 km von Žaborić / ~15–20 Minuten mit dem Auto\nEmpfohlen für: Paare, Familien, Liebhaber von Stadtbummeln",
+        prog1_tag1: "Stadtbummel",
+        prog1_tag2: "UNESCO",
+        prog1_tag3: "Kultur",
+
+        prog2_title: "Festung des Heiligen Michael – Panorama über Šibenik",
+        prog2_text1: "Die Festung des Heiligen Michael ist die älteste Burg von Šibenik und liegt auf einem Hügel direkt über der Altstadt. Von hier hast du einen beeindruckenden Blick über die Stadt, die Mündung des Krka-Flusses und die Inselwelt. Im Sommer finden in der Festung häufig Konzerte und Veranstaltungen statt.",
+        prog2_meta: "Entfernung: ca. 15 km von Žaborić / ~20–25 Minuten mit dem Auto + kurzer Fußweg durch die Altstadt\nEmpfohlen für: Fans von Aussichtspunkten, Geschichte und Sonnenuntergängen",
+        prog2_tag1: "Panorama",
+        prog2_tag2: "Geschichte",
+        prog2_tag3: "Sonnenuntergang",
+
+        prog3_title: "Nationalpark Krka – Wasserfälle und grüne Täler",
+        prog3_text1: "Der Nationalpark Krka gehört zu den bekanntesten Sehenswürdigkeiten Kroatiens. Die Wasserfälle von Skradinski buk, die Stege über dem Fluss, das grüne Tal und die Bootsausflüge bieten ein ganz besonderes Naturerlebnis. Der Haupteingang befindet sich nahe der Ortschaft Skradin, rund eine halbe Stunde von Šibenik entfernt.",
+        prog3_meta: "Entfernung: ca. 35–40 km von Žaborić (Richtung Šibenik–Skradin)\nEmpfohlen für: Naturliebhaber, Familien, Fotografierende",
+        prog3_tag1: "Nationalpark",
+        prog3_tag2: "Wasserfälle",
+        prog3_tag3: "Ausflug",
+
+        prog4_title: "Aquapark Dalmatia – Wasserpark bei Šibenik",
+        prog4_text1: "Der Aquapark Dalmatia ist Teil des Resorts Amadria Park in der Nähe von Šibenik. Ein familienfreundlicher Wasserpark mit Rutschen, Becken, Wellenbad und Lazy River – perfekt für einen ganzen Tag Spaß, vor allem mit Kindern.",
+        prog4_meta: "Entfernung: ca. 20 km von Žaborić / ~20–25 Minuten mit dem Auto\nEmpfohlen für: Familien, Freundesgruppen, Reisende mit Kindern",
+        prog4_tag1: "Wasserpark",
+        prog4_tag2: "Familienausflug",
+        prog4_tag3: "Kinderfreundlich",
+
+        prog5_title: "Primošten – Altstadt auf einer Halbinsel und Kieselstrände",
+        prog5_text1: "Primošten ist eine typische dalmatinische Kleinstadt, die sich auf einer kleinen Halbinsel erstreckt. Steinhäuser, enge Gassen und die Promenaden am Meer sorgen für ein echtes mediterranes Flair. In der Umgebung gibt es mehrere schöne, kieselige Strände mit klarem Wasser – perfekt, um Sightseeing mit Baden zu verbinden.",
+        prog5_meta: "Entfernung: ca. 17 km von Žaborić / ~15–20 Minuten mit dem Auto\nEmpfohlen für: Paare, Familien, Strandtage und abendliche Spaziergänge",
+        prog5_tag1: "Strand",
+        prog5_tag2: "Altstadt",
+        prog5_tag3: "Gastronomie",
+
+        prog6_title: "Zipline Čikola-Schlucht – Adrenalin über dem Canyon",
+        prog6_text1: "Die tiefe Schlucht des Čikola-Flusses liegt unweit von Šibenik. Die dort errichtete Zipline-Strecke ist ein echtes Adrenalinerlebnis: Auf mehreren Abschnitten ‚fliegst‘ du mit bis zu rund 70 km/h über das Tal in großer Höhe. Die Aussicht ist atemberaubend, und die Tour findet mit professioneller Sicherheitsausrüstung statt.",
+        prog6_meta: "Entfernung: ca. 45–50 km von Žaborić\nEmpfohlen für: Aktive Urlauber, Adrenalin-Fans, ältere Kinder und Jugendliche",
+        prog6_tag1: "Adrenalin",
+        prog6_tag2: "Natur",
+        prog6_tag3: "Abenteuer",
+
+        prog7_title: "Kornaten – Bootsausflug ins Insel-Labyrinth",
+        prog7_text1: "Der Nationalpark Kornati ist ein einzigartiger Archipel mit zahlreichen Inseln, Felsen und kristallklaren Buchten. Zahlreiche lokale Anbieter organisieren Ganztagesausflüge ab Šibenik und der Umgebung, meist inklusive Badestopps, Mittagessen und Spaziergängen auf den Inseln.",
+        prog7_meta: "Abfahrt meist von: Hafen Šibenik, Amadria Park oder nahegelegenen Orten\nEmpfohlen für: Ganztagesausflüge für Familien, Paare und Freundesgruppen",
+        prog7_tag1: "Bootsausflug",
+        prog7_tag2: "Nationalpark",
+        prog7_tag3: "Ganztagesprogramm",
+
+        programs_note: "Die angegebenen Entfernungen und Fahrzeiten sind Richtwerte und beziehen sich auf Autofahrten. Bitte informiere dich vorab online über aktuelle Öffnungszeiten und Eintrittspreise."
+    });
+
+    Object.assign(translations.hr, {
+        programs: "Aktivnosti u blizini",
+        programs_title: "Aktivnosti u blizini",
+        programs_intro_1: "Žaborić je idealna polazna točka za otkrivanje najljepših dijelova sjeverne Dalmacije.",
+        programs_intro_2: "Sljedeće aktivnosti nalaze se unutar otprilike 100 km te su savršene za poludnevne ili cjelodnevne izlete.",
+
+        prog1_title: "Stari grad Šibenik i katedrala sv. Jakova (UNESCO)",
+        prog1_text1: "Šarmantni stari grad Šibenika oduševljava uskim, vijugavim ulicama, kamenim kućama i trgovima s pogledom na more. Ovdje se nalazi i katedrala sv. Jakova, jedinstveno renesansno remek-djelo u potpunosti izgrađeno od kamena, pod zaštitom UNESCO-a.",
+        prog1_text2: "Odličan izbor za laganu poslijepodnevnu šetnju, kavu i sladoled uz rivu.",
+        prog1_meta: "Udaljenost: oko 12–15 km od Žaborića / ~15–20 minuta autom\nPreporučeno za: parove, obitelji, ljubitelje razgledavanja grada",
+        prog1_tag1: "Razgledavanje",
+        prog1_tag2: "UNESCO",
+        prog1_tag3: "Kultura",
+
+        prog2_title: "Tvrđava sv. Mihovila – panorama iznad Šibenika",
+        prog2_text1: "Tvrđava sv. Mihovila najstarija je šibenska utvrda i nalazi se na brežuljku iznad starog grada. S nje se pruža prekrasan pogled na grad, ušće rijeke Krke i okolni arhipelag. Ljeti se unutar tvrđave često održavaju koncerti i razna događanja.",
+        prog2_meta: "Udaljenost: oko 15 km od Žaborića / ~20–25 minuta autom + kratka šetnja kroz stari grad\nPreporučeno za: one koji vole vidikovce, povijest i zalaske sunca",
+        prog2_tag1: "Panorama",
+        prog2_tag2: "Povijest",
+        prog2_tag3: "Zalazak sunca",
+
+        prog3_title: "Nacionalni park Krka – slapovi i zelene doline",
+        prog3_text1: "Nacionalni park Krka jedno je od najpoznatijih hrvatskih odredišta. Slapovi Skradinskog buka, drvene staze iznad rijeke, zelena dolina i izleti brodom pružaju posebno prirodno iskustvo. Glavni ulaz nalazi se kod mjesta Skradin, otprilike pola sata vožnje od Šibenika.",
+        prog3_meta: "Udaljenost: oko 35–40 km od Žaborića (smjer Šibenik–Skradin)\nPreporučeno za: ljubitelje prirode, obitelji, fotografiranje",
+        prog3_tag1: "Nacionalni park",
+        prog3_tag2: "Slapovi",
+        prog3_tag3: "Izlet",
+
+        prog4_title: "Aquapark Dalmatia – vodeni park kraj Šibenika",
+        prog4_text1: "Aquapark Dalmatia dio je hotelskog kompleksa Amadria Park u blizini Šibenika. Obiteljski vodeni park s toboganima, bazenima, valovitim bazenom i 'Lazy River' kanalom – odličan izbor za cijeli dan, posebno s djecom.",
+        prog4_meta: "Udaljenost: oko 20 km od Žaborića / ~20–25 minuta autom\nPreporučeno za: obitelji, društvo prijatelja, goste s djecom",
+        prog4_tag1: "Vodeni park",
+        prog4_tag2: "Obiteljski izlet",
+        prog4_tag3: "Za djecu",
+
+        prog5_title: "Primošten – stari grad na poluotoku i šljunčane plaže",
+        prog5_text1: "Primošten je tipično dalmatinsko mjestašce smješteno na malom poluotoku. Kamene kuće, uske uličice i šetnice uz more stvaraju poseban mediteranski ugođaj. U okolici se nalaze lijepe šljunčane plaže s čistim morem, pa se razgledavanje grada lako može spojiti s kupanjem.",
+        prog5_meta: "Udaljenost: oko 17 km od Žaborića / ~15–20 minuta autom\nPreporučeno za: parove, obitelji, kupanje i večernju šetnju",
+        prog5_tag1: "Plaža",
+        prog5_tag2: "Stari grad",
+        prog5_tag3: "Gastronomija",
+
+        prog6_title: "Zipline kanjon Čikole – adrenalin iznad klanca",
+        prog6_text1: "Duboki kanjon rijeke Čikole nalazi se nedaleko od Šibenika, a zipline-staza izgrađena iznad klanca pruža pravo adrenalinsko iskustvo: na nekoliko dionica 'letiš' iznad doline brzinom i do oko 70 km/h, na velikoj visini. Pogled je impresivan, a program se odvija uz stručnu pratnju i sigurnosnu opremu.",
+        prog6_meta: "Udaljenost: oko 45–50 km od Žaborića\nPreporučeno za: aktivan odmor, ljubitelje adrenalina, stariju djecu i mlade",
+        prog6_tag1: "Adrenalin",
+        prog6_tag2: "Priroda",
+        prog6_tag3: "Avantura",
+
+        prog7_title: "Kornati – izlet brodom u otočni labirint",
+        prog7_text1: "Nacionalni park Kornati jedinstveni je arhipelag s brojnim otocima, liticama i uvalama kristalno čistog mora. Mnoge lokalne agencije organiziraju cjelodnevne izlete brodom iz Šibenika i okolice, obično uz kupanje, ručak i šetnju po otocima.",
+        prog7_meta: "Polazak najčešće iz: šibenske luke, Amadria Parka ili obližnjih mjesta\nPreporučeno za: cjelodnevni izlet za obitelji, parove i društvo prijatelja",
+        prog7_tag1: "Izlet brodom",
+        prog7_tag2: "Nacionalni park",
+        prog7_tag3: "Cjelodnevni program",
+
+        programs_note: "Navedene udaljenosti i vremena vožnje su približne i odnose se na putovanje automobilom. Prije polaska provjerite aktualno radno vrijeme i cijene ulaznica."
+    });
+
+    // Oldal betöltésekor állítsuk vissza a localStorage-ban tárolt nyelvet
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'hu';
+        if (typeof updateLanguage === 'function') {
+            updateLanguage(savedLang);
+        }
+    });
+</script>
+
+</body>
+</html>

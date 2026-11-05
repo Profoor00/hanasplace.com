@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapcsolat</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        .scroll-animate { opacity: 1 !important; transform: none !important; }
+
+        main {
+            padding: 120px 1.5rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-page h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-page .contact-info {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .contact-page .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 350px;
+            margin: 2rem auto 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-directions {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .directions-btn {
+            display: inline-block;
+            background: #d2b48c;
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .directions-btn:hover {
+            background: #b8966c;
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 768px) {
+            main { padding: 110px 1rem 2.5rem; }
+            .map-container { height: 280px; }
+        }
+
+        @media (max-width: 480px) {
+            .map-container { height: 240px; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Nyaraló Logó"></a>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" data-lang="home">Főoldal</a></li>
+            <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+            <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+            <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+            <li><a href="kapcsolat.html" class="active" data-lang="contact">Kapcsolat</a></li>
+            <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+        </ul>
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang-code="hu">HU</button>
+            <button class="lang-btn" data-lang-code="en">EN</button>
+            <button class="lang-btn" data-lang-code="de">DE</button>
+            <button class="lang-btn" data-lang-code="hr">HR</button>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="contact-page scroll-animate">
+        <h1 data-lang="contact">Kapcsolat</h1>
+        <form id="contactForm">
+            <input type="text" name="name" data-lang="name_placeholder" placeholder="Név" required>
+            <input type="email" name="email" data-lang="email_placeholder" placeholder="Email" required>
+            <textarea name="message" data-lang="message_placeholder" placeholder="Üzenet" required></textarea>
+            <button type="submit" data-lang="contact_send">Küldés</button>
+        </form>
+
+        <div class="contact-info">
+            <p>
+                <strong data-lang="contact_email_label">Email:</strong>
+                <span data-lang="contact_email">apartman.hanasplace@gmail.com</span>
+            </p>
+            <p>
+                <strong data-lang="contact_phone_label">Telefon:</strong>
+                <span data-lang="contact_phone">+36303914439</span>
+            </p>
+            <p>
+                <strong data-lang="contact_address_label">Cím:</strong>
+                <span data-lang="contact_address">Jasenova ulica 10, 22010 Žaborić, Horvátország</span>
+            </p>
+        </div>
+
+        <!-- Google Maps beágyazás az általad adott címre -->
+<div class="map-container">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.71371036954!2d15.9480935!3d43.6539658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133524a0363d8d79%3A0x6c998eb2a680afa5!2sJasenova%20ul.%2010%2C%2022010%20%C5%BDabori%C4%87%2C%20Croatia!5e0!3m2!1shu!2shu!4v1700000000000"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+
+<div class="map-directions">
+    <a 
+        class="directions-btn"
+        data-lang="directions_button"
+        href="https://www.google.com/maps/dir/?api=1&destination=Jasenova+ul.+10,+Žaborić"
+        target="_blank">
+        Útvonaltervezés
+    </a>
+</div>
+
+    </section>
+</main>
+
+<!-- EmailJS majd később -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'hu';
+        if (typeof updateLanguage === 'function') {
+            updateLanguage(savedLang);
+        }
+    });
+</script>
+
+</body>
+</html>

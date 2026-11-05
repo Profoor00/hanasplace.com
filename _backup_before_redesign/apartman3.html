@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartman 3 – Foglalás</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        .scroll-animate { opacity: 1 !important; transform: none !important; }
+
+        main {
+            padding: 120px 1.5rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .apartment-detail {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .apartment-detail h1 { margin-bottom: 1rem; }
+        .apartment-detail p { margin-bottom: 0.5rem; }
+        .price { font-weight: 600; margin-top: 0.5rem; }
+
+        .booking-calendar, #bookingFormSection {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .booking-calendar h2, #bookingFormSection h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-wrapper {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .calendar-box {
+            background: #f5f5dc;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 310px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            color: #8b6f47;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-header button {
+            background: #d2b48c;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .calendar-header button:hover { background: #b79972; }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+
+        .day {
+            padding: 10px 0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .day.free:hover { background: #f1e5c8; }
+        .day.booked { background: #ffccc9; color: #8a1f1a; cursor: not-allowed; }
+        .day.empty { background: transparent; cursor: default; }
+
+        .day.start, .day.end {
+            background: #d2b48c !important;
+            color: #fff !important;
+            border-color: #b79972 !important;
+        }
+
+        .day.inrange {
+            background: #ffb4b4 !important;
+            color: #7a1a1a;
+        }
+
+        .selected-dates {
+            margin-top: 1rem;
+            text-align: center;
+            color: #8b6f47;
+            font-size: 1.05rem;
+        }
+
+        #bookingFormSection form { max-width: 500px; }
+        #bookingFormSection label {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+        #bookingFormSection input,
+        #bookingFormSection textarea {
+            width: 100%;
+            margin-bottom: .8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            main { padding: 110px 1rem 2.5rem; }
+            .calendar-box { width: 100%; }
+        }
+    </style>
+    <link rel="stylesheet" href="booking.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Nyaraló Logó"></a>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" data-lang="home">Főoldal</a></li>
+            <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+            <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+            <li><a class="active" href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+            <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+        </ul>
+
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang-code="hu">HU</button>
+            <button class="lang-btn" data-lang-code="en">EN</button>
+            <button class="lang-btn" data-lang-code="de">DE</button>
+            <button class="lang-btn" data-lang-code="hr">HR</button>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<main>
+<section class="apartment-detail scroll-animate">
+    <h1 data-lang="apartment3">Apartman 3</h1>
+
+    <div class="gallery">
+        <img src="apartman3.nappali.jpeg" alt="Apartman 3 – tágas nappali">
+        <img src="apartman3.szoba.jpeg" alt="Apartman 3 – hálószobák">
+        <img src="apartman3.konyha.jpeg" alt="Apartman 3 – konyha">
+        <img src="apartman3.terasz.jpeg" alt="Apartman 3 – terasz">
+    </div>
+
+    <p data-lang="ap3_desc">
+        Nagy méretű, prémium apartman 6 fő részére, ideális nagyobb családok vagy baráti társaságok számára.
+        Teljesen felszerelt konyhával, modern berendezéssel és nyugodt környezettel várja vendégeit.
+
+        Hosszabb tartózkodásra is kiváló választás.
+    </p>
+
+    <h3 data-lang="ap3_rooms_title">Szobák felszereltsége</h3>
+    <ul>
+        <li data-lang="ap3_room_item0">3 hálószoba</li>
+        <li data-lang="ap3_room_item1">tágas hálószobák, kényelmes ágyak</li>
+        <li data-lang="ap3_room_item2">ágynemű (heti csere)</li>
+        <li data-lang="ap3_room_item3">klímaberendezés</li>
+        <li data-lang="ap3_room_item4">TV</li>
+        <li data-lang="ap3_room_item5">ingyenes WiFi</li>
+    </ul>
+
+    <h3 data-lang="ap3_kitchen_title">Konyha felszereltsége</h3>
+    <ul>
+        <li data-lang="ap3_kitchen_item1">mosogatógép</li>
+        <li data-lang="ap3_kitchen_item2">mikrohullámú sütő</li>
+        <li data-lang="ap3_kitchen_item3">hűtőszekrény fagyasztóval</li>
+        <li data-lang="ap3_kitchen_item4">airfryer</li>
+        <li data-lang="ap3_kitchen_item5">kapszulás kávéfőző (Dolce Gusto)</li>
+        <li data-lang="ap3_kitchen_item6">vízforraló</li>
+        <li data-lang="ap3_kitchen_item7">kenyérpirító</li>
+    </ul>
+
+    <h3 data-lang="ap3_bathroom_title">Fürdőszoba</h3>
+    <ul>
+        <li data-lang="ap3_bathroom_item1">zuhanyzó</li>
+        <li data-lang="ap3_bathroom_item2">hajszárító</li>
+        <li data-lang="ap3_bathroom_item3">törölközők (heti csere)</li>
+        <li data-lang="ap3_bathroom_item4">mosógép</li>
+    </ul>
+
+    <h3 data-lang="ap3_kidsfriendly_title">Gyerekbarát felszereltség (kérésre)</h3>
+    <ul>
+        <li data-lang="ap3_kidsfriendly_item1">kiságy matraccal</li>
+        <li data-lang="ap3_kidsfriendly_item2">etetőszék</li>
+        <li data-lang="ap3_kidsfriendly_item3">székmagasító</li>
+        <li data-lang="ap3_kidsfriendly_item4">baba fürdetőkád</li>
+    </ul>
+
+    <h3 data-lang="ap3_services_title">Általános szolgáltatások</h3>
+    <ul>
+        <li data-lang="ap3_services_item1">2 ingyenes parkolóhely (egymás mögött)</li>
+        <li data-lang="ap3_services_item2">heti törölköző- és ágyneműcsere</li>
+    </ul>
+
+    <h3 data-lang="ap3_pets_title">Állatbarát információk</h3>
+    <p>
+        <span data-lang="ap3_pets_text">Ez az apartman nem állatbarát.</span>
+    </p>
+
+    <h3 data-lang="ap3_prices_title">Árak és fizetés</h3>
+    <p class="price">
+        <span data-lang="ap3_prices_price">Ár: 230 €/éj + 50€ takarítás</span><br>
+        <span data-lang="ap3_prices_tax">Idegenforgalmi adó külön fizetendő távozáskor.</span><br>
+        <span data-lang="ap3_prices_payment">Fizetés: online bankkártya vagy banki átutalás.</span>
+    </p>
+</section>
+
+
+    <section class="booking-calendar scroll-animate">
+        <h2 data-lang="booking_calendar_title">Foglalási naptár</h2>
+
+        <div class="calendar-wrapper">
+            <div class="calendar-box">
+                <div class="calendar-header">
+                    <button id="prev1">&lt;</button>
+                    <span id="monthLabel1"></span>
+                    <button id="next1">&gt;</button>
+                </div>
+                <div class="calendar-grid" id="calendar1"></div>
+            </div>
+
+            <div class="calendar-box">
+                <div class="calendar-header">
+                    <button id="prev2">&lt;</button>
+                    <span id="monthLabel2"></span>
+                    <button id="next2">&gt;</button>
+                </div>
+                <div class="calendar-grid" id="calendar2"></div>
+            </div>
+        </div>
+
+        <div class="selected-dates">
+            <p><span data-lang="booking_selected_start_label">Kezdő dátum:</span> <strong id="startDateText">Nincs</strong></p>
+            <p><span data-lang="booking_selected_end_label">Befejező dátum:</span> <strong id="endDateText">Nincs</strong></p>
+        </div>
+    </section>
+
+    <section id="bookingFormSection" class="scroll-animate" style="display:none;">
+        <h2 data-lang="booking_form_title">Foglalás</h2>
+
+        <form id="bookingForm">
+            <label for="checkin" data-lang="booking_checkin_label">Kezdés:</label>
+            <input type="text" id="checkin" name="checkin" readonly>
+
+            <label for="checkout" data-lang="booking_checkout_label">Befejezés:</label>
+            <input type="text" id="checkout" name="checkout" readonly>
+
+            <label for="name" data-lang="booking_name_label">Név:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email" data-lang="booking_email_label">Email cím:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone" data-lang="booking_phone_label">Telefonszám:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address" data-lang="booking_address_label">Lakcím:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="message" data-lang="booking_message_label">Üzenet:</label>
+            <textarea id="message" name="message" required></textarea>
+            <div style="margin:0.6rem 0;display:flex;flex-direction:column;gap:0.4rem;align-items:flex-start;">
+                <label style="display:flex;gap:0.6rem;align-items:center;">
+                    <input type="checkbox" id="acceptTerms" name="acceptTerms">
+                    <span data-lang="accept_terms">Elolvastam és elfogadom az általános szerződési feltételeket.</span>
+                </label>
+                <a class="terms-download" href="terms_hu.html" data-lang="terms_link_text">Általános szerződési feltételek letöltése</a>
+            </div>
+
+            <button type="submit" data-lang="booking_submit">Foglalás elküldése</button>
+        </form>
+    </section>
+</main>
+
+<script src="script.js"></script>
+
+<script>
+    // Foglalási beállítások ehhez az apartmanhoz (az árat a szerver is ellenőrzi)
+    window.BOOKING_CONFIG = {
+        apartmentId: "ap3",
+        apartmentName: "Apartman 3",
+        nightlyPrice: 230,
+        cleaningFee: 50
+    };
+</script>
+<!-- Foglalási naptár + fizetés (közös a 3 apartmannak) -->
+<script src="booking.js"></script>
+
+<script>
+translations.hu = translations.hu || {};
+translations.en = translations.en || {};
+translations.de = translations.de || {};
+translations.hr = translations.hr || {};
+
+Object.assign(translations.hu, {
+        ap3_room_item0: "3 hálószoba",
+    ap3_desc: "Tágas, prémium apartman (6 fő részére) nagyobb családok vagy baráti társaságok számára. Teljes felszereltség, modern berendezés és nyugodt környezet hosszabb tartózkodásra is.",
+    ap3_rooms_title: "Szobák felszereltsége",
+    ap3_room_item1: "tágas hálószobák, kényelmes ágyak",
+    ap3_room_item2: "ágynemű (heti csere)",
+    ap3_room_item3: "klímaberendezés",
+    ap3_room_item4: "TV",
+    ap3_room_item5: "ingyenes WiFi",
+    ap3_kitchen_title: "Konyha felszereltsége",
+    ap3_kitchen_item1: "mosogatógép",
+    ap3_kitchen_item2: "mikrohullámú sütő",
+    ap3_kitchen_item3: "hűtőszekrény fagyasztóval",
+    ap3_kitchen_item4: "airfryer",
+    ap3_kitchen_item5: "kapszulás kávéfőző (Dolce Gusto)",
+    ap3_kitchen_item6: "vízforraló",
+    ap3_kitchen_item7: "kenyérpirító",
+    ap3_bathroom_title: "Fürdőszoba",
+    ap3_bathroom_item1: "zuhanyzó",
+    ap3_bathroom_item2: "hajszárító",
+    ap3_bathroom_item3: "törölközők (heti csere)",
+    ap3_bathroom_item4: "mosógép",
+    ap3_kidsfriendly_title: "Gyerekbarát felszereltség (kérésre)",
+    ap3_kidsfriendly_item1: "kiságy matraccal",
+    ap3_kidsfriendly_item2: "etetőszék",
+    ap3_kidsfriendly_item3: "székmagasító",
+    ap3_kidsfriendly_item4: "baba fürdetőkád",
+    ap3_services_title: "Általános szolgáltatások",
+    ap3_services_item1: "2 ingyenes parkolóhely (egymás mögött)",
+    ap3_services_item2: "heti törölköző- és ágyneműcsere",
+    ap3_pets_text: "Ez az apartman nem állatbarát.",
+    ap3_prices_title: "Árak és fizetés",
+    ap3_prices_price: "Ár: 230 €/éj + 50€ takarítás",
+    ap3_prices_tax: "Idegenforgalmi adó külön fizetendő távozáskor.",
+    ap3_prices_payment: "Fizetés: online bankkártya vagy banki átutalás.",
+    booking_calendar_title: "Foglalási naptár",
+    booking_selected_start_label: "Kezdő dátum:",
+    booking_selected_end_label: "Befejező dátum:",
+    booking_form_title: "Foglalás",
+    booking_checkin_label: "Kezdés:",
+    booking_checkout_label: "Befejezés:",
+    booking_name_label: "Név:",
+    booking_email_label: "Email cím:",
+    booking_phone_label: "Telefonszám:",
+    booking_address_label: "Lakcím:",
+    booking_message_label: "Üzenet:",
+    booking_submit: "Foglalás elküldése",
+    booking_none: "Nincs",
+    booking_terms_required: "El kell fogadni az általános szerződési feltételeket.",
+    booking_save_error: "Hiba történt a foglalás mentésekor.",
+    booking_email_success: "Foglalás sikeresen elküldve! Hamarosan felvesszük veled a kapcsolatot.",
+    booking_email_failure: "A foglalás mentve lett, de az e-mail küldés nem sikerült.",
+    accept_terms: "Elolvastam és elfogadom az általános szerződési feltételeket.",
+    terms_link_text: "Általános szerződési feltételek letöltése"
+});
+
+Object.assign(translations.en, {
+            ap3_room_item0: "3 bedrooms",
+        ap3_kidsfriendly_title: "Child-friendly equipment (on request)",
+    ap3_desc: "Spacious, premium apartment (for 6 people) ideal for larger families or groups of friends. Fully equipped, modern furnishings and a quiet environment for longer stays.",
+    ap3_prices_title: "Prices and payment",
+    ap3_prices_price: "Price: 230 €/night + 50€ cleaning",
+    ap3_prices_tax: "Tourist tax is payable separately upon departure.",
+    ap3_prices_payment: "Payment: online card payment or bank transfer.",
+    booking_calendar_title: "Booking calendar",
+    booking_selected_start_label: "Check-in date:",
+    booking_selected_end_label: "Check-out date:",
+    booking_form_title: "Reservation",
+    booking_checkin_label: "Check-in:",
+    booking_checkout_label: "Check-out:",
+    booking_name_label: "Name:",
+    booking_email_label: "Email address:",
+    booking_phone_label: "Phone number:",
+    booking_address_label: "Address:",
+    booking_message_label: "Message:",
+    booking_submit: "Send reservation request",
+    booking_none: "None",
+    booking_terms_required: "Please accept the Terms and Conditions.",
+    booking_save_error: "An error occurred while saving the booking.",
+    booking_email_success: "Booking sent successfully! We will contact you soon.",
+    booking_email_failure: "Booking saved, but email sending failed.",
+    accept_terms: "I have read and accept the Terms and Conditions.",
+    terms_link_text: "Download Terms and Conditions"
+});
+
+Object.assign(translations.de, {
+            ap3_room_item0: "3 Schlafzimmer",
+        ap3_kidsfriendly_title: "Kinderfreundliche Ausstattung (auf Anfrage)",
+    ap3_desc: "Geräumiges, Premium-Apartment (für 6 Personen), ideal für größere Familien oder Freundesgruppen. Voll ausgestattet, moderne Einrichtung und ruhige Umgebung auch für längere Aufenthalte.",
+    ap3_prices_title: "Preise und Zahlung",
+    ap3_prices_price: "Preis: 230 €/Nacht + 50€ Reinigung",
+    ap3_prices_tax: "Kurtaxe ist bei Abreise separat zu zahlen.",
+    ap3_prices_payment: "Zahlung: Online-Kartenzahlung oder Banküberweisung.",
+    booking_calendar_title: "Buchungskalender",
+    booking_selected_start_label: "Anreisedatum:",
+    booking_selected_end_label: "Abreisedatum:",
+    booking_form_title: "Buchung",
+    booking_checkin_label: "Anreise:",
+    booking_checkout_label: "Abreise:",
+    booking_name_label: "Name:",
+    booking_email_label: "E-Mail-Adresse:",
+    booking_phone_label: "Telefonnummer:",
+    booking_address_label: "Adresse:",
+    booking_message_label: "Nachricht:",
+    booking_submit: "Buchungsanfrage senden",
+    booking_none: "Keine",
+    booking_terms_required: "Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.",
+    booking_save_error: "Fehler beim Speichern der Buchung.",
+    booking_email_success: "Buchung erfolgreich gesendet! Wir melden uns bald.",
+    booking_email_failure: "Buchung gespeichert, aber E-Mail-Versand fehlgeschlagen.",
+    accept_terms: "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiere sie.",
+    terms_link_text: "Allgemeine Geschäftsbedingungen herunterladen"
+});
+
+Object.assign(translations.hr, {
+            ap3_room_item0: "3 spavaće sobe",
+        ap3_kidsfriendly_title: "Dječja oprema (na zahtjev)",
+    ap3_desc: "Prostran, premium apartman (za 6 osoba), idealan za veće obitelji ili društvo prijatelja. Potpuno opremljen, moderan namještaj i mirno okruženje za duži boravak.",
+    ap3_prices_title: "Cijene i plaćanje",
+    ap3_prices_price: "Cijena: 230 €/noć + 50€ čišćenje",
+    ap3_prices_tax: "Boravišna pristojba plaća se posebno prilikom odlaska.",
+    ap3_prices_payment: "Plaćanje: online karticom ili bankovnom uplatom.",
+    booking_calendar_title: "Kalendar rezervacija",
+    booking_selected_start_label: "Datum dolaska:",
+    booking_selected_end_label: "Datum odlaska:",
+    booking_form_title: "Rezervacija",
+    booking_checkin_label: "Dolazak:",
+    booking_checkout_label: "Odlazak:",
+    booking_name_label: "Ime:",
+    booking_email_label: "E-mail adresa:",
+    booking_phone_label: "Broj telefona:",
+    booking_address_label: "Adresa:",
+    booking_message_label: "Poruka:",
+    booking_submit: "Pošalji upit za rezervaciju",
+    booking_none: "Nema",
+    booking_terms_required: "Molimo prihvatite Opće uvjete.",
+    booking_save_error: "Došlo je do pogreške pri spremanju rezervacije.",
+    booking_email_success: "Rezervacija uspješno poslana! Kontaktirat ćemo vas uskoro.",
+    booking_email_failure: "Rezervacija je spremljena, ali slanje e-pošte nije uspjelo.",
+    accept_terms: "Pročitao/la sam i prihvaćam Opće uvjete.",
+    terms_link_text: "Preuzmi Opće uvjete"
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('lang') || 'hu';
+    if (typeof updateLanguage === 'function') {
+        updateLanguage(savedLang);
+    }
+});
+</script>
+
+</body>
+</html>

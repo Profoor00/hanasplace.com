@@ -1,0 +1,108 @@
+/* Foglalási naptár + fizetés (booking.js) – az új dizájnrendszer színeivel */
+
+.calendar-header button:disabled { opacity: .3; cursor: default; }
+
+.calendar-grid .dow {
+    text-align: center; font-size: .74rem; font-weight: 600; color: var(--ink-soft, #56625F);
+    padding-bottom: .3rem;
+}
+
+.calendar-grid .day {
+    position: relative; user-select: none;
+    aspect-ratio: 1 / 1; min-height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 12px; border: 1px solid transparent;
+    background: #fff; box-shadow: inset 0 0 0 1px rgba(139, 111, 71, .14);
+    font-weight: 600; font-size: .95rem; font-variant-numeric: tabular-nums;
+    color: var(--ink, #1F2D33); cursor: pointer;
+    transition: background .15s, box-shadow .15s, color .15s;
+}
+.calendar-grid .day.empty { background: transparent; box-shadow: none; cursor: default; }
+.calendar-grid .day.disabled { cursor: not-allowed; }
+.calendar-grid .day.past { color: #b9bcb6; background: transparent; box-shadow: none; }
+.calendar-grid .day.today { box-shadow: inset 0 0 0 2px var(--sand-deep, #B79972); }
+
+/* Teljesen foglalt */
+.calendar-grid .day.booked {
+    background: var(--coral, #EDB9AC); color: #7d3a2c; box-shadow: none;
+    text-decoration: line-through; text-decoration-thickness: 1px;
+}
+/* Valaki ezen a napon TÁVOZIK → délelőtt foglalt, délután érkezhetsz */
+.calendar-grid .day.half-out { background: linear-gradient(135deg, var(--coral, #EDB9AC) 0 49%, #fff 51% 100%); }
+/* Valaki ezen a napon ÉRKEZIK → délelőtt távozhatsz, délután foglalt */
+.calendar-grid .day.half-in  { background: linear-gradient(135deg, #fff 0 49%, var(--coral, #EDB9AC) 51% 100%); color: #7d3a2c; }
+.calendar-grid .day.half-in.free { color: var(--ink, #1F2D33); }
+
+.calendar-grid .day.free:hover { background: var(--sand-mist, #F1E5C8); box-shadow: inset 0 0 0 1px var(--sand-deep, #B79972); }
+.calendar-grid .day.half-out.free:hover { background: linear-gradient(135deg, var(--coral, #EDB9AC) 0 49%, var(--sand-mist, #F1E5C8) 51% 100%); }
+.calendar-grid .day.half-in.free:hover  { background: linear-gradient(135deg, var(--sand-mist, #F1E5C8) 0 49%, var(--coral, #EDB9AC) 51% 100%); }
+
+.calendar-grid .day.out-of-reach { opacity: .35; }
+
+/* Kiválasztás */
+.calendar-grid .day.inrange { background: var(--sand-mist, #F1E5C8); box-shadow: none; text-decoration: none; color: var(--ink, #1F2D33); }
+.calendar-grid .day.preview { background: rgba(241, 229, 200, .6); box-shadow: none; }
+.calendar-grid .day.preview-end { box-shadow: inset 0 0 0 2px var(--sand-deep, #B79972); }
+.calendar-grid .day.start,
+.calendar-grid .day.end,
+.calendar-grid .day.start:hover,
+.calendar-grid .day.end:hover {
+    background: var(--night, #15242A); color: #fff; box-shadow: none; opacity: 1; text-decoration: none;
+}
+
+/* Jelmagyarázat + útmutató */
+.bk-legend {
+    display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; justify-content: center;
+    margin-top: 1.6rem; font-size: .88rem; color: var(--ink-soft, #56625F);
+}
+.bk-legend > span { display: inline-flex; align-items: center; gap: .5rem; }
+.bk-sw { width: 18px; height: 18px; border-radius: 6px; display: inline-block; box-shadow: inset 0 0 0 1px rgba(139, 111, 71, .25); }
+.bk-sw-free { background: #fff; }
+.bk-sw-booked { background: var(--coral, #EDB9AC); box-shadow: none; }
+.bk-sw-change { background: linear-gradient(135deg, var(--coral, #EDB9AC) 0 49%, #fff 51% 100%); }
+
+.bk-hint { text-align: center; margin: 1rem auto 0; max-width: none; color: var(--driftwood, #8B6F47); font-weight: 600; }
+.bk-hint.warn { color: #9a5418; }
+
+/* Visszajelzések */
+.bk-status {
+    margin: 0 0 1.4rem; max-width: none; padding: .95rem 1.15rem; border-radius: 14px;
+    font-weight: 600; line-height: 1.5; border: 1px solid transparent;
+}
+.bk-status[hidden] { display: none; }
+.bk-status.ok    { background: #e8f3ea; color: #1e5b2e; border-color: #bfdcc6; }
+.bk-status.info  { background: var(--beige, #F5F2E6); color: var(--driftwood, #8B6F47); border-color: rgba(139, 111, 71, .25); }
+.bk-status.warn  { background: #fff4e3; color: #8a5a12; border-color: #f0d6a6; }
+.bk-status.error { background: #fbebe7; color: #8a2a1a; border-color: #f0c4ba; }
+#bookingForm .bk-status { margin: 0; }
+
+/* Ár-összesítő */
+.bk-summary {
+    padding: 1.1rem 1.25rem; border-radius: 16px;
+    background: var(--beige, #F5F2E6); border: 1px solid rgba(139, 111, 71, .2);
+}
+.bk-row { display: flex; justify-content: space-between; gap: 1rem; padding: .25rem 0; color: var(--ink-soft, #56625F); }
+.bk-row span:last-child { color: var(--ink, #1F2D33); font-variant-numeric: tabular-nums; }
+.bk-row.bk-total { border-top: 1px solid rgba(139, 111, 71, .25); margin-top: .5rem; padding-top: .7rem; color: var(--ink, #1F2D33); }
+.bk-row.bk-total span { font-family: var(--font-display, sans-serif); font-weight: 600; font-size: 1.3rem; }
+.bk-note { margin: .5rem 0 0; font-size: .85rem; color: var(--ink-soft, #56625F); }
+
+/* Fizetési mód */
+.bk-pay { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+.bk-pay legend { font-weight: 700; font-size: .95rem; margin-bottom: .6rem; padding: 0; }
+.bk-option {
+    display: flex; gap: .8rem; align-items: flex-start; cursor: pointer;
+    padding: 1rem 1.1rem; border: 1.5px solid rgba(139, 111, 71, .25); border-radius: 16px;
+    background: #fff; font-weight: 400; transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.bk-option:hover { border-color: var(--sand-deep, #B79972); }
+.bk-option:has(input:checked) { border-color: var(--night, #15242A); box-shadow: inset 0 0 0 1px var(--night, #15242A); }
+.bk-option input[type="radio"] { width: 18px; height: 18px; margin: .2rem 0 0; accent-color: var(--night, #15242A); flex: 0 0 auto; }
+.bk-option strong { display: block; font-size: 1rem; }
+.bk-option small { display: block; color: var(--ink-soft, #56625F); margin-top: .3rem; line-height: 1.45; font-size: .85rem; }
+.bk-cards { display: block; font-size: .78rem; color: var(--driftwood, #8B6F47); margin-top: .2rem; }
+@media (max-width: 620px) { .bk-pay { grid-template-columns: 1fr; } }
+
+.bk-secure { display: flex; align-items: center; gap: .45rem; margin: 0; font-size: .85rem; color: #4f7a5a; }
+
+#bookingForm button[type="submit"]:disabled { opacity: .6; cursor: wait; }

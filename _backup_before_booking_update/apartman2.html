@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartman 2 – Foglalás</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        .scroll-animate { opacity: 1 !important; transform: none !important; }
+
+        main {
+            padding: 120px 1.5rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .apartment-detail {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .apartment-detail h1 { margin-bottom: 1rem; }
+        .apartment-detail p { margin-bottom: 0.5rem; }
+        .price { font-weight: 600; margin-top: 0.5rem; }
+
+        .booking-calendar, #bookingFormSection {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .booking-calendar h2, #bookingFormSection h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-wrapper {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .calendar-box {
+            background: #f5f5dc;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 310px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            color: #8b6f47;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-header button {
+            background: #d2b48c;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .calendar-header button:hover { background: #b79972; }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+
+        .day {
+            padding: 10px 0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .day.free:hover { background: #f1e5c8; }
+        .day.booked { background: #ffccc9; color: #8a1f1a; cursor: not-allowed; }
+        .day.empty { background: transparent; cursor: default; }
+
+        .day.start, .day.end {
+            background: #d2b48c !important;
+            color: #fff !important;
+            border-color: #b79972 !important;
+        }
+
+        .day.inrange {
+            background: #ffb4b4 !important;
+            color: #7a1a1a;
+        }
+
+        .selected-dates {
+            margin-top: 1rem;
+            text-align: center;
+            color: #8b6f47;
+            font-size: 1.05rem;
+        }
+
+        #bookingFormSection form { max-width: 500px; }
+        #bookingFormSection label {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+        #bookingFormSection input,
+        #bookingFormSection textarea {
+            width: 100%;
+            margin-bottom: .8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            main { padding: 110px 1rem 2.5rem; }
+            .calendar-box { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Nyaraló Logó"></a>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" data-lang="home">Főoldal</a></li>
+            <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+            <li><a class="active" href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+            <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+            <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+        </ul>
+
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang-code="hu">HU</button>
+            <button class="lang-btn" data-lang-code="en">EN</button>
+            <button class="lang-btn" data-lang-code="de">DE</button>
+            <button class="lang-btn" data-lang-code="hr">HR</button>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<main>
+<section class="apartment-detail scroll-animate">
+    <h1 data-lang="apartment2">Apartman 2</h1>
+
+    <div class="gallery">
+        <img src="apartman1.nappali.jpeg" alt="Apartman 2 – nappali és étkező">
+        <img src="apartman1.halo.jpeg" alt="Apartman 2 – hálószoba">
+        <img src="apartman1.furdo.jpeg" alt="Apartman 2 – fürdőszoba">
+        <img src="apartman1.terasz.jpeg" alt="Apartman 2 – terasz">
+    </div>
+
+    <p data-lang="ap2_desc">
+        Modern, jól felszerelt apartman családok számára (4 fő részére). Mosogatógépes konyha, klíma, WiFi, gyerekbarát kialakítás és kis testű kutya fogadása felár ellenében.
+    </p>
+
+    <h3 data-lang="ap2_rooms_title">Szobák felszereltsége</h3>
+    <ul>
+        <li data-lang="ap2_room_item0">1 hálószoba</li>
+        <li data-lang="ap2_room_item1">kényelmes ágy, ágynemű (heti csere)</li>
+        <li data-lang="ap2_room_item2">klímaberendezés</li>
+        <li data-lang="ap2_room_item3">TV</li>
+        <li data-lang="ap2_room_item4">ingyenes WiFi</li>
+    </ul>
+
+    <h3 data-lang="ap2_kitchen_title">Konyha felszereltsége</h3>
+    <ul>
+        <li data-lang="ap2_kitchen_item1">mosogatógép</li>
+        <li data-lang="ap2_kitchen_item2">mikrohullámú sütő</li>
+        <li data-lang="ap2_kitchen_item3">hűtőszekrény fagyasztóval</li>
+        <li data-lang="ap2_kitchen_item4">airfryer</li>
+        <li data-lang="ap2_kitchen_item5">kapszulás kávéfőző (Dolce Gusto)</li>
+        <li data-lang="ap2_kitchen_item6">vízforraló</li>
+        <li data-lang="ap2_kitchen_item7">kenyérpirító</li>
+    </ul>
+
+    <h3 data-lang="ap2_bathroom_title">Fürdőszoba</h3>
+    <ul>
+        <li data-lang="ap2_bathroom_item1">zuhanyzó</li>
+        <li data-lang="ap2_bathroom_item2">hajszárító</li>
+        <li data-lang="ap2_bathroom_item3">törölközők (heti csere)</li>
+    </ul>
+
+    <h3 data-lang="ap2_kidsfriendly_title">Gyerekbarát felszereltség (kérésre)</h3>
+    <ul>
+        <li data-lang="ap2_kidsfriendly_item1">kiságy matraccal</li>
+        <li data-lang="ap2_kidsfriendly_item2">etetőszék</li>
+        <li data-lang="ap2_kidsfriendly_item3">székmagasító</li>
+        <li data-lang="ap2_kidsfriendly_item4">baba fürdetőkád</li>
+    </ul>
+
+    <h3 data-lang="ap2_services_title">Általános szolgáltatások</h3>
+    <ul>
+        <li data-lang="ap2_services_item1">1 ingyenes parkolóhely az apartmanhoz</li>
+        <li data-lang="ap2_services_item2">heti törölköző- és ágyneműcsere</li>
+    </ul>
+
+    <h3 data-lang="ap2_pets_title">Állatbarát információk</h3>
+    <p>
+        <span data-lang="ap2_pets_text">Kis testű kutya hozható. Felár: </span><strong data-lang="ap2_pets_price">20 €/nap</strong><span data-lang="ap2_pets_note">. Kaució fizetése kötelező.</span>
+    </p>
+
+    <h3 data-lang="ap2_prices_title">Árak és fizetés</h3>
+    <p class="price">
+    <span data-lang="ap2_prices_price">Ár: 135 €/éj + 50€ takarítás</span><br>
+        <span data-lang="ap2_prices_tax">Idegenforgalmi adó külön fizetendő távozáskor.</span><br>
+        <span data-lang="ap2_prices_payment">Fizetés: banki átutalás.</span>
+    </p>
+</section>
+
+
+    <section class="booking-calendar scroll-animate">
+        <h2 data-lang="booking_calendar_title">Foglalási naptár</h2>
+
+        <div class="calendar-wrapper">
+            <div class="calendar-box">
+                <div class="calendar-header">
+                    <button id="prev1">&lt;</button>
+                    <span id="monthLabel1"></span>
+                    <button id="next1">&gt;</button>
+                </div>
+                <div class="calendar-grid" id="calendar1"></div>
+            </div>
+
+            <div class="calendar-box">
+                <div class="calendar-header">
+                    <button id="prev2">&lt;</button>
+                    <span id="monthLabel2"></span>
+                    <button id="next2">&gt;</button>
+                </div>
+                <div class="calendar-grid" id="calendar2"></div>
+            </div>
+        </div>
+
+        <div class="selected-dates">
+            <p><span data-lang="booking_selected_start_label">Kezdő dátum:</span> <strong id="startDateText">Nincs</strong></p>
+            <p><span data-lang="booking_selected_end_label">Befejező dátum:</span> <strong id="endDateText">Nincs</strong></p>
+        </div>
+    </section>
+
+    <section id="bookingFormSection" class="scroll-animate" style="display:none;">
+        <h2 data-lang="booking_form_title">Foglalás</h2>
+
+        <form id="bookingForm">
+            <label for="checkin" data-lang="booking_checkin_label">Kezdés:</label>
+            <input type="text" id="checkin" name="checkin" readonly>
+
+            <label for="checkout" data-lang="booking_checkout_label">Befejezés:</label>
+            <input type="text" id="checkout" name="checkout" readonly>
+
+            <label for="name" data-lang="booking_name_label">Név:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email" data-lang="booking_email_label">Email cím:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone" data-lang="booking_phone_label">Telefonszám:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address" data-lang="booking_address_label">Lakcím:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="message" data-lang="booking_message_label">Üzenet:</label>
+            <textarea id="message" name="message" required></textarea>
+            <div style="margin:0.6rem 0;display:flex;flex-direction:column;gap:0.4rem;align-items:flex-start;">
+                <label style="display:flex;gap:0.6rem;align-items:center;">
+                    <input type="checkbox" id="acceptTerms" name="acceptTerms">
+                    <span data-lang="accept_terms">Elolvastam és elfogadom az általános szerződési feltételeket.</span>
+                </label>
+                <a class="terms-download" href="terms_hu.html" data-lang="terms_link_text">Általános szerződési feltételek letöltése</a>
+            </div>
+
+            <button type="submit" data-lang="booking_submit">Foglalás elküldése</button>
+        </form>
+    </section>
+</main>
+
+<script src="script.js"></script>
+
+<script>
+    const monthNames = (translations[currentLang] && translations[currentLang].months) || [
+        "Január","Február","Március","Április","Május","Június",
+        "Július","Augusztus","Szeptember","Október","November","December"
+    ];
+
+    let bookings = [];
+    let startDate = null;
+    let endDate = null;
+
+    let currentYear = new Date().getFullYear();
+    let month1 = new Date().getMonth();
+    let month2 = (month1 + 1) > 11 ? 0 : month1 + 1;
+
+    /* ====== JSONBin / tároló beállítások (cseréld ki a kulcsokat!) ====== */
+    const JSONBIN_API_KEY = "$2a$10$zCW0lOVGrSsqw.E3w3Qkj.D3uovoMhwzojptrCb2MXEOTw1YtK/62";
+    const JSONBIN_BIN_ID  = "6977103a43b1c97be94ab2d1";
+    const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`;
+
+    async function loadBookings() {
+        try {
+            const res = await fetch(JSONBIN_URL, { headers: { "X-Master-Key": JSONBIN_API_KEY } });
+            const json = await res.json();
+            bookings = json.record.bookedIntervals || [];
+        } catch (err) {
+            console.error("JSONBin betöltési hiba:", err);
+            bookings = [];
+        }
+    }
+
+    async function saveBooking(interval) {
+        bookings.push(interval);
+
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Master-Key": JSONBIN_API_KEY
+            },
+            body: JSON.stringify({ bookedIntervals: bookings })
+        });
+
+        if (!res.ok) {
+            bookings.pop();
+                alert(translations[currentLang]['booking_save_error'] || "Hiba történt a foglalás mentésekor.");
+            return false;
+        }
+        return true;
+    }
+
+    function isBooked(dateStr) {
+        return bookings.some(b => dateStr >= b.start && dateStr <= b.end);
+    }
+
+    function renderCalendar(month, year, labelID, containerID) {
+        const label = document.getElementById(labelID);
+        const container = document.getElementById(containerID);
+
+        const monthsFor = (translations[currentLang] && translations[currentLang].months) || monthNames;
+        label.textContent = `${monthsFor[month]} ${year}`;
+        container.innerHTML = "";
+
+        let firstDay = new Date(year, month, 1).getDay();
+        if (firstDay === 0) firstDay = 7;
+        const emptyDays = firstDay - 1;
+
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < emptyDays; i++) {
+            container.innerHTML += `<div class="day empty"></div>`;
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dateStr = `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+            let cls = "day";
+
+            if (isBooked(dateStr)) cls += " booked";
+            else cls += " free";
+
+            if (dateStr === startDate) cls += " start";
+            if (dateStr === endDate) cls += " end";
+            if (startDate && endDate && dateStr > startDate && dateStr < endDate) cls += " inrange";
+
+            container.innerHTML += `<div class="${cls}" data-date="${dateStr}">${d}</div>`;
+        }
+    }
+
+    function attachCalendarClicks() {
+        document.querySelectorAll(".day.free").forEach(el => {
+            el.onclick = () => {
+                const selected = el.dataset.date;
+
+                if (!startDate || (startDate && endDate)) {
+                    startDate = selected;
+                    endDate = null;
+                } else {
+                    if (selected < startDate) {
+                        startDate = selected;
+                        endDate = null;
+                    } else {
+                        endDate = selected;
+                    }
+                }
+
+                updateUI();
+            };
+        });
+    }
+
+    function updateUI() {
+        renderCalendar(month1, currentYear, "monthLabel1", "calendar1");
+        renderCalendar(month2, currentYear, "monthLabel2", "calendar2");
+        attachCalendarClicks();
+
+        document.getElementById("startDateText").textContent = startDate || translations[currentLang]['booking_none'];
+        document.getElementById("endDateText").textContent = endDate || translations[currentLang]['booking_none'];
+
+        const formSection = document.getElementById("bookingFormSection");
+        if (startDate && endDate) {
+            formSection.style.display = "block";
+            document.getElementById("checkin").value = startDate;
+            document.getElementById("checkout").value = endDate;
+        } else {
+            formSection.style.display = "none";
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        document.getElementById('prev1').addEventListener('click', () => {
+            month1 = (month1 - 1 + 12) % 12;
+            month2 = (month1 + 1) % 12;
+            updateUI();
+        });
+        document.getElementById('next1').addEventListener('click', () => {
+            month1 = (month1 + 1) % 12;
+            month2 = (month1 + 1) % 12;
+            updateUI();
+        });
+        document.getElementById('prev2').addEventListener('click', () => {
+            month2 = (month2 - 1 + 12) % 12;
+            month1 = (month2 - 1 + 12) % 12;
+            updateUI();
+        });
+        document.getElementById('next2').addEventListener('click', () => {
+            month2 = (month2 + 1) % 12;
+            month1 = (month2 - 1 + 12) % 12;
+            updateUI();
+        });
+
+        await loadBookings();
+        updateUI();
+    });
+
+document.getElementById("bookingForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const form = e.target;
+    const acceptEl = form.querySelector('input[name="acceptTerms"]');
+    if (!acceptEl || !acceptEl.checked) {
+        alert(translations[currentLang]['booking_terms_required'] || 'Please accept the Terms and Conditions.');
+        return;
+    }
+    const selectedStart = startDate;
+    const selectedEnd = endDate;
+
+    const bookingData = { start: selectedStart, end: selectedEnd };
+
+    const saved = await saveBooking(bookingData);
+  if (!saved) return;
+
+  /* ===== EMAILJS PARAMÉTEREK ===== */
+    const templateParams = {
+        apartment: "Apartman 2", // apartmanonként átírható
+        checkin: selectedStart,
+        checkout: selectedEnd,
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        address: form.address.value,
+        message: form.message.value
+    };
+
+  try {
+    /* Admin email */
+    await emailjs.send(
+      "service_58mwnzb",      // ← CSERE
+      "template_h6ucz2p",  // ← CSERE
+      templateParams
+    );
+
+        alert(translations[currentLang]['booking_email_success'] || "Foglalás sikeresen elküldve! Hamarosan felvesszük veled a kapcsolatot.");
+
+    startDate = null;
+    endDate = null;
+    await loadBookings();
+    updateUI();
+    form.reset();
+
+  } catch (err) {
+        alert(translations[currentLang]['booking_email_failure'] || "A foglalás mentve lett, de az e-mail küldés nem sikerült.");
+    console.error(err);
+  }
+});
+
+</script>
+
+<script>
+    translations.hu = translations.hu || {};
+    translations.en = translations.en || {};
+    translations.de = translations.de || {};
+    translations.hr = translations.hr || {};
+
+    Object.assign(translations.hu, {
+        ap2_desc: "Modern, jól felszerelt apartman családok számára (4 fő részére). Mosogatógépes konyha, klíma, WiFi, gyerekbarát kialakítás és kis testű kutya fogadása felár ellenében.",
+        ap2_rooms_title: "Szobák felszereltsége",
+        ap2_room_item0: "1 hálószoba",
+        ap2_room_item1: "kényelmes ágy, ágynemű (heti csere)",
+        ap2_room_item2: "klímaberendezés",
+        ap2_room_item3: "TV",
+        ap2_room_item4: "ingyenes WiFi",
+        ap2_kitchen_title: "Konyha felszereltsége",
+        ap2_kitchen_item1: "mosogatógép",
+        ap2_kitchen_item2: "mikrohullámú sütő",
+        ap2_kitchen_item3: "hűtőszekrény fagyasztóval",
+        ap2_kitchen_item4: "airfryer",
+        ap2_kitchen_item5: "kapszulás kávéfőző (Dolce Gusto)",
+        ap2_kitchen_item6: "vízforraló",
+        ap2_kitchen_item7: "kenyérpirító",
+        ap2_bathroom_title: "Fürdőszoba",
+        ap2_bathroom_item1: "zuhanyzó",
+        ap2_bathroom_item2: "hajszárító",
+        ap2_bathroom_item3: "törölközők (heti csere)",
+        ap2_kidsfriendly_title: "Gyerekbarát felszereltség (kérésre)",
+        ap2_kidsfriendly_item1: "kiságy matraccal",
+        ap2_kidsfriendly_item2: "etetőszék",
+        ap2_kidsfriendly_item3: "székmagasító",
+        ap2_kidsfriendly_item4: "baba fürdetőkád",
+        ap2_services_title: "Általános szolgáltatások",
+        ap2_services_item1: "1 ingyenes parkolóhely az apartmanhoz",
+        ap2_services_item2: "heti törölköző- és ágyneműcsere",
+        ap2_pets_title: "Állatbarát információk",
+        ap2_pets_text: "Kis testű kutya hozható. Felár: ",
+        ap2_pets_price: "20 €/nap",
+        ap2_pets_note: ". Kaució fizetése kötelező.",
+        ap2_prices_title: "Árak és fizetés",
+        ap2_prices_price: "Ár: 135 €/éj + 50€ takarítás",
+        ap2_prices_cleaning: "takarítás",
+        ap2_prices_tax: "Idegenforgalmi adó külön fizetendő távozáskor.",
+        ap2_prices_payment: "Fizetés: banki átutalás.",
+        booking_calendar_title: "Foglalási naptár",
+        booking_selected_start_label: "Kezdő dátum:",
+        booking_selected_end_label: "Befejező dátum:",
+        booking_form_title: "Foglalás",
+        booking_checkin_label: "Kezdés:",
+        booking_checkout_label: "Befejezés:",
+        booking_name_label: "Név:",
+        booking_email_label: "Email cím:",
+        booking_phone_label: "Telefonszám:",
+        booking_address_label: "Lakcím:",
+        booking_message_label: "Üzenet:",
+        booking_submit: "Foglalás elküldése",
+        booking_none: "Nincs",
+        booking_terms_required: "El kell fogadni az általános szerződési feltételeket.",
+        booking_save_error: "Hiba történt a foglalás mentésekor.",
+        booking_email_success: "Foglalás sikeresen elküldve! Hamarosan felvesszük veled a kapcsolatot.",
+        booking_email_failure: "A foglalás mentve lett, de az e-mail küldés nem sikerült.",
+        accept_terms: "Elolvastam és elfogadom az általános szerződési feltételeket.",
+        terms_link_text: "Általános szerződési feltételek letöltése"
+    });
+
+    Object.assign(translations.en, {
+        ap2_desc: "Modern, well-equipped apartment for families (up to 4 people). Dishwasher kitchen, air conditioning, WiFi, child-friendly design and small dogs allowed for an extra fee.",
+        ap2_rooms_title: "Room amenities",
+        ap2_room_item0: "1 bedroom",
+        ap2_room_item1: "comfortable bed, bed linen (weekly change)",
+        ap2_room_item2: "air conditioning",
+        ap2_room_item3: "TV",
+        ap2_room_item4: "free WiFi",
+        ap2_kitchen_title: "Kitchen amenities",
+        ap2_kitchen_item1: "dishwasher",
+        ap2_kitchen_item2: "microwave oven",
+        ap2_kitchen_item3: "fridge with freezer",
+        ap2_kitchen_item4: "airfryer",
+        ap2_kitchen_item5: "capsule coffee machine (Dolce Gusto)",
+        ap2_kitchen_item6: "kettle",
+        ap2_kitchen_item7: "toaster",
+        ap2_bathroom_title: "Bathroom",
+        ap2_bathroom_item1: "shower",
+        ap2_bathroom_item2: "hair dryer",
+        ap2_bathroom_item3: "towels (weekly change)",
+        ap2_kidsfriendly_title: "Child-friendly equipment (on request)",
+        ap2_kidsfriendly_item1: "baby cot with mattress",
+        ap2_kidsfriendly_item2: "high chair",
+        ap2_kidsfriendly_item3: "booster seat",
+        ap2_kidsfriendly_item4: "baby bath tub",
+        ap2_services_title: "General services",
+        ap2_services_item1: "1 free parking space for the apartment",
+        ap2_services_item2: "weekly towel and linen change",
+        ap2_services_item3: "cleaning €50, this is charged for every guest",
+        ap2_pets_title: "Pet information",
+        ap2_pets_text: "Small dog allowed. Extra fee: ",
+        ap2_pets_price: "20 €/day",
+        ap2_pets_note: ". Deposit required.",
+        ap2_prices_title: "Prices and payment",
+        ap2_prices_price: "Price: 135 €/night + 50€ cleaning",
+        ap2_prices_cleaning: "cleaning",
+        ap2_prices_tax: "Tourist tax payable separately upon departure.",
+        ap2_prices_payment: "Payment: bank transfer.",
+        booking_calendar_title: "Booking calendar",
+        booking_selected_start_label: "Check-in date:",
+        booking_selected_end_label: "Check-out date:",
+        booking_form_title: "Reservation",
+        booking_checkin_label: "Check-in:",
+        booking_checkout_label: "Check-out:",
+        booking_name_label: "Name:",
+        booking_email_label: "Email address:",
+        booking_phone_label: "Phone number:",
+        booking_address_label: "Address:",
+        booking_message_label: "Message:",
+        booking_submit: "Send reservation request",
+        booking_none: "None",
+        booking_terms_required: "Please accept the Terms and Conditions.",
+        booking_save_error: "An error occurred while saving the booking.",
+        booking_email_success: "Booking sent successfully! We will contact you soon.",
+        booking_email_failure: "Booking saved, but email sending failed.",
+        accept_terms: "I have read and accept the Terms and Conditions.",
+        terms_link_text: "Download Terms and Conditions"
+    });
+
+    Object.assign(translations.de, {
+        ap2_desc: "Modern, gut ausgestattetes Apartment für Familien (bis zu 4 Personen). Küche mit Geschirrspüler, Klimaanlage, WLAN, kinderfreundliche Ausstattung und kleine Hunde gegen Aufpreis erlaubt.",
+        ap2_rooms_title: "Zimmerausstattung",
+        ap2_room_item0: "1 Schlafzimmer",
+        ap2_room_item1: "bequemes Bett, Bettwäsche (wöchentlicher Wechsel)",
+        ap2_room_item2: "Klimaanlage",
+        ap2_room_item3: "TV",
+        ap2_room_item4: "kostenloses WLAN",
+        ap2_kitchen_title: "Küchenausstattung",
+        ap2_kitchen_item1: "Geschirrspüler",
+        ap2_kitchen_item2: "Mikrowelle",
+        ap2_kitchen_item3: "Kühlschrank mit Gefrierfach",
+        ap2_kitchen_item4: "Airfryer",
+        ap2_kitchen_item5: "Kapsel-Kaffeemaschine (Dolce Gusto)",
+        ap2_kitchen_item6: "Wasserkocher",
+        ap2_kitchen_item7: "Toaster",
+        ap2_bathroom_title: "Badezimmer",
+        ap2_bathroom_item1: "Dusche",
+        ap2_bathroom_item2: "Haartrockner",
+        ap2_bathroom_item3: "Handtücher (wöchentlicher Wechsel)",
+        ap2_kidsfriendly_title: "Kinderfreundliche Ausstattung (auf Anfrage)",
+        ap2_kidsfriendly_item1: "Babybett mit Matratze",
+        ap2_kidsfriendly_item2: "Hochstuhl",
+        ap2_kidsfriendly_item3: "Sitzerhöhung",
+        ap2_kidsfriendly_item4: "Babybadewanne",
+        ap2_services_title: "Allgemeine Dienstleistungen",
+        ap2_services_item1: "1 kostenloser Parkplatz für das Apartment",
+        ap2_services_item2: "wöchentlicher Handtuch- und Bettwäschewechsel",
+        ap2_pets_title: "Haustierinformation",
+        ap2_pets_text: "Kleiner Hund erlaubt. Aufpreis: ",
+        ap2_pets_price: "20 €/Tag",
+        ap2_pets_note: ". Kaution erforderlich.",
+        ap2_prices_title: "Preise und Zahlung",
+        ap2_prices_price: "Preis: 135 €/Nacht + 50€ Reinigung",
+        ap2_prices_cleaning: "Endreinigung",
+        ap2_prices_tax: "Kurtaxe separat bei Abreise zu zahlen.",
+        ap2_prices_payment: "Zahlung: Banküberweisung.",
+        booking_calendar_title: "Buchungskalender",
+        booking_selected_start_label: "Anreisedatum:",
+        booking_selected_end_label: "Abreisedatum:",
+        booking_form_title: "Buchung",
+        booking_checkin_label: "Anreise:",
+        booking_checkout_label: "Abreise:",
+        booking_name_label: "Name:",
+        booking_email_label: "E-Mail-Adresse:",
+        booking_phone_label: "Telefonnummer:",
+        booking_address_label: "Adresse:",
+        booking_message_label: "Nachricht:",
+        booking_submit: "Buchungsanfrage senden",
+        booking_none: "Keine",
+        booking_terms_required: "Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.",
+        booking_save_error: "Fehler beim Speichern der Buchung.",
+        booking_email_success: "Buchung erfolgreich gesendet! Wir melden uns bald.",
+        booking_email_failure: "Buchung gespeichert, aber E-Mail-Versand fehlgeschlagen.",
+        accept_terms: "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiere sie.",
+        terms_link_text: "Allgemeine Geschäftsbedingungen herunterladen"
+    });
+
+    Object.assign(translations.hr, {
+        ap2_desc: "Moderan, dobro opremljen apartman za obitelji (do 4 osobe). Kuhinja s perilicom posuđa, klima, WiFi, dječja oprema i mali pas uz nadoplatu.",
+        ap2_rooms_title: "Oprema soba",
+        ap2_room_item0: "1 spavaća soba",
+        ap2_room_item1: "udoban krevet, posteljina (tjedna zamjena)",
+        ap2_room_item2: "klima uređaj",
+        ap2_room_item3: "TV",
+        ap2_room_item4: "besplatan WiFi",
+        ap2_kitchen_title: "Oprema kuhinje",
+        ap2_kitchen_item1: "perilica posuđa",
+        ap2_kitchen_item2: "mikrovalna pećnica",
+        ap2_kitchen_item3: "hladnjak sa zamrzivačem",
+        ap2_kitchen_item4: "airfryer",
+        ap2_kitchen_item5: "kapsulni aparat za kavu (Dolce Gusto)",
+        ap2_kitchen_item6: "kuhalo za vodu",
+        ap2_kitchen_item7: "toster",
+        ap2_bathroom_title: "Kupaonica",
+        ap2_bathroom_item1: "tuš",
+        ap2_bathroom_item2: "sušilo za kosu",
+        ap2_bathroom_item3: "ručnici (tjedna zamjena)",
+        ap2_kidsfriendly_title: "Dječja oprema (na zahtjev)",
+        ap2_kidsfriendly_item1: "dječji krevetić s madracem",
+        ap2_kidsfriendly_item2: "dječja hranilica",
+        ap2_kidsfriendly_item3: "povišenje za stolicu",
+        ap2_kidsfriendly_item4: "kadica za bebe",
+        ap2_services_title: "Opće usluge",
+        ap2_services_item1: "1 besplatno parkirno mjesto za apartman",
+        ap2_services_item2: "tjedna promjena ručnika i posteljine",
+        ap2_pets_title: "Informacije o kućnim ljubimcima",
+        ap2_pets_text: "Mali pas dozvoljen. Nadoplata: ",
+        ap2_pets_price: "20 €/dan",
+        ap2_pets_note: ". Obavezan polog.",
+        ap2_prices_title: "Cijene i plaćanje",
+        ap2_prices_price: "Cijena: 135 €/noć + 50€ čišćenje",
+        ap2_prices_cleaning: "čišćenje",
+        ap2_prices_tax: "Boravišna pristojba plaća se posebno pri odlasku.",
+        ap2_prices_payment: "Plaćanje: bankovna doznaka.",
+        booking_calendar_title: "Kalendar rezervacija",
+        booking_selected_start_label: "Datum dolaska:",
+        booking_selected_end_label: "Datum odlaska:",
+        booking_form_title: "Rezervacija",
+        booking_checkin_label: "Dolazak:",
+        booking_checkout_label: "Odlazak:",
+        booking_name_label: "Ime:",
+        booking_email_label: "E-mail adresa:",
+        booking_phone_label: "Broj telefona:",
+        booking_address_label: "Adresa:",
+        booking_message_label: "Poruka:",
+        booking_submit: "Pošalji upit za rezervaciju",
+        booking_none: "Nema",
+        booking_terms_required: "Molimo prihvatite Opće uvjete.",
+        booking_save_error: "Došlo je do pogreške pri spremanju rezervacije.",
+        booking_email_success: "Rezervacija uspješno poslana! Kontaktirat ćemo vas uskoro.",
+        booking_email_failure: "Rezervacija je spremljena, ali slanje e-pošte nije uspjelo.",
+        accept_terms: "Pročitao/la sam i prihvaćam Opće uvjete.",
+        terms_link_text: "Preuzmi Opće uvjete"
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'hu';
+        if (typeof updateLanguage === 'function') {
+            updateLanguage(savedLang);
+        }
+    });
+</script>
+
+</body>
+</html>

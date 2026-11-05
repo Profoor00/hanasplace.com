@@ -1,0 +1,109 @@
+/* Foglalási naptár kiegészítések (booking.js) – az oldal saját stílusai után töltődik be */
+
+.calendar-header button:disabled { opacity: .35; cursor: default; }
+
+/* A styles.css "!important" fehér hátteret ad minden napnak, ezért itt erősebb szelektorok kellenek */
+.booking-calendar .day { position: relative; user-select: none; }
+.booking-calendar .day.empty { background: transparent !important; cursor: default !important; }
+.booking-calendar .day.disabled { cursor: not-allowed !important; }
+.booking-calendar .day.past { color: #bbb; background: #f6f6f6 !important; }
+.booking-calendar .day.today { border-color: #d2b48c !important; }
+
+/* Teljesen foglalt nap */
+.booking-calendar .day.booked {
+    background: #ffccc9 !important;
+    color: #8a1f1a;
+    text-decoration: line-through;
+}
+/* Valaki ezen a napon TÁVOZIK → délelőtt foglalt, délután szabad (ekkor érkezhetsz) */
+.booking-calendar .day.half-out { background: linear-gradient(135deg, #ffccc9 0 49%, #fff 51% 100%) !important; }
+/* Valaki ezen a napon ÉRKEZIK → délelőtt szabad (ekkor távozhatsz), délután foglalt */
+.booking-calendar .day.half-in  { background: linear-gradient(135deg, #fff 0 49%, #ffccc9 51% 100%) !important; color: #8a1f1a; }
+.booking-calendar .day.half-in.free { color: inherit; }
+
+.booking-calendar .day.free:hover { background: #f1e5c8 !important; }
+.booking-calendar .day.half-out.free:hover { background: linear-gradient(135deg, #ffccc9 0 49%, #f1e5c8 51% 100%) !important; }
+.booking-calendar .day.half-in.free:hover  { background: linear-gradient(135deg, #f1e5c8 0 49%, #ffccc9 51% 100%) !important; }
+
+.booking-calendar .day.out-of-reach { opacity: .4; }
+
+/* Kiválasztott tartomány + előnézet egér alatt */
+.booking-calendar .day.inrange { background: #ffb4b4 !important; color: #7a1a1a; text-decoration: none; }
+.booking-calendar .day.preview { background: #f6e3e3 !important; }
+.booking-calendar .day.preview-end { border-color: #d2b48c !important; }
+
+/* Érkezés / távozás – mindig ez látszik */
+.booking-calendar .day.start,
+.booking-calendar .day.end,
+.booking-calendar .day.start:hover,
+.booking-calendar .day.end:hover {
+    background: #d2b48c !important;
+    color: #fff !important;
+    border-color: #b79972 !important;
+    opacity: 1;
+}
+
+/* Jelmagyarázat + útmutató */
+.bk-legend {
+    display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; justify-content: center;
+    margin-top: 1.2rem; font-size: .92rem; color: #555;
+}
+.bk-legend > span { display: inline-flex; align-items: center; gap: .45rem; }
+.bk-sw { width: 18px; height: 18px; border-radius: 4px; display: inline-block; border: 1px solid #e3d6c0; }
+.bk-sw-free { background: #fff; }
+.bk-sw-booked { background: #ffccc9; }
+.bk-sw-change { background: linear-gradient(135deg, #ffccc9 0 49%, #fff 51% 100%); }
+
+.bk-hint { text-align: center; margin: .8rem 0 0; color: #8b6f47; font-weight: 600; }
+.bk-hint.warn { color: #a5521a; }
+
+/* Visszajelző dobozok */
+.bk-status {
+    margin: 0 auto 1.2rem; max-width: 680px; padding: .9rem 1.1rem; border-radius: 10px;
+    font-weight: 600; line-height: 1.45; border: 1px solid transparent;
+}
+.bk-status[hidden] { display: none; }
+.bk-status.ok    { background: #e7f5ea; color: #1e5b2e; border-color: #b9dfc2; }
+.bk-status.info  { background: #f4efe5; color: #6b5532; border-color: #e3d6c0; }
+.bk-status.warn  { background: #fff5e6; color: #8a5a12; border-color: #f1d7a8; }
+.bk-status.error { background: #fdecea; color: #8a1f1a; border-color: #f3c2bd; }
+#bookingForm .bk-status { margin: 1rem 0 0; }
+
+/* Ár-összesítő */
+.bk-summary {
+    margin: 1rem 0 1.2rem; padding: 1rem 1.2rem; border-radius: 10px;
+    background: #faf6ee; border: 1px solid #ecdfc7;
+}
+.bk-row { display: flex; justify-content: space-between; gap: 1rem; padding: .25rem 0; }
+.bk-row.bk-total { border-top: 1px solid #e3d6c0; margin-top: .4rem; padding-top: .6rem; font-weight: 700; font-size: 1.1rem; }
+.bk-note { margin: .5rem 0 0; font-size: .85rem; color: #777; }
+
+/* Fizetési mód */
+.bk-pay { border: 0; padding: 0; margin: 0 0 1rem; }
+.bk-pay legend { font-weight: 600; margin-bottom: .5rem; padding: 0; }
+#bookingFormSection .bk-option {
+    display: flex; gap: .8rem; align-items: flex-start; cursor: pointer;
+    padding: .85rem 1rem; margin: 0 0 .6rem; border: 2px solid #ecdfc7; border-radius: 10px;
+    background: #fff; font-weight: 400; transition: border-color .15s, background .15s;
+}
+#bookingFormSection .bk-option:has(input:checked) { border-color: #d2b48c; background: #fdf9f1; }
+#bookingFormSection .bk-option input[type="radio"] {
+    width: auto; margin: .25rem 0 0; padding: 0; accent-color: #b79972; flex: 0 0 auto;
+}
+.bk-option strong { display: block; }
+.bk-option small { display: block; color: #666; margin-top: .25rem; line-height: 1.4; }
+.bk-cards { display: block; font-size: .78rem; letter-spacing: .02em; color: #8b6f47; margin-top: .15rem; }
+
+.bk-secure {
+    display: flex; align-items: center; gap: .4rem; margin: .8rem 0 0;
+    font-size: .85rem; color: #6b8f71;
+}
+
+#bookingFormSection input[type="checkbox"] { width: auto; margin: 0; flex: 0 0 auto; }
+
+#bookingForm button[type="submit"]:disabled { opacity: .6; cursor: wait; }
+
+@media (max-width: 480px) {
+    .bk-legend { font-size: .85rem; gap: .5rem 1rem; }
+    .bk-row.bk-total { font-size: 1rem; }
+}

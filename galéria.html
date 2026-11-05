@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galéria – Hana’s Place, Žaborić</title>
+    <meta name="description" content="Fotók az apartmanokról, a házról és Žaborić tengerpartjáról.">
+    <meta name="theme-color" content="#15242A">
+    <link rel="icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar" aria-label="Hana’s Place">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Hana’s Place"><span class="logo-word">Hana’s Place</span></a>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" data-lang="home">Főoldal</a></li>
+            <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+            <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+            <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+            <li><a href="galéria.html" data-lang="gallery" class="active" aria-current="page">Galéria</a></li>
+            <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            <li class="nav-only-mobile"><a href="index.html#apartments" data-lang="nav_book">Foglalás</a></li>
+        </ul>
+        <div class="language-selector" role="group" aria-label="Nyelv / Language">
+            <button class="lang-btn active" type="button" data-lang-code="hu">HU</button>
+            <button class="lang-btn" type="button" data-lang-code="en">EN</button>
+            <button class="lang-btn" type="button" data-lang-code="de">DE</button>
+            <button class="lang-btn" type="button" data-lang-code="hr">HR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="index.html#apartments" data-lang="nav_book">Foglalás</a>
+        <button class="hamburger" id="hamburger" type="button" aria-controls="nav-links" aria-label="Menü" data-lang-aria="menu_label">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main>
+    <section class="page-hero">
+        <img class="hero-media" src="image00032.jpeg" alt="A žaborići part" fetchpriority="high">
+        <div class="hero-shade"></div>
+        <div class="container">
+            <h1 data-lang="gallery_title">Galéria</h1>
+            <p data-lang="gallery_intro">Tekintse meg apartmanjaink és környékünk képeit! Kattintson a képekre a nagyításhoz.</p>
+        </div>
+    </section>
+    <div class="container">
+        <div class="gallery-grid" data-lightbox>
+        <button class="gallery-item" type="button"><img src="image00001.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00008.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00010.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00013.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00016.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00017.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00019.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00022.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00024.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00025.jpeg" alt="Tengerparti kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00029.jpeg" alt="Strand" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00030.jpeg" alt="Nap lemente a tengerparton" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00031.jpeg" alt="Helyi étterem" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00032.jpeg" alt="Helyi látnivaló" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00034.jpeg" alt="Helyi piac" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00037.jpeg" alt="Helyi kirándulás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00039.jpeg" alt="Naplemente a tengerparton" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00042.jpeg" alt="Helyi étterem terasz" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00045.jpeg" alt="Helyi látnivaló kilátás" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00049.jpeg" alt="Helyi piac zöldségek" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00056.jpeg" alt="Helyi kirándulás erdőben" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00057.jpeg" alt="Tengerparti naplemente" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00058.jpeg" alt="Helyi étterem belső" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00060.jpeg" alt="Helyi látnivaló napfényben" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00066.jpeg" alt="Helyi piac gyümölcsök" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00068.jpeg" alt="Helyi kirándulás hegyek között" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00070.jpeg" alt="Tengerparti napfelkelte" loading="lazy"></button>
+        <button class="gallery-item" type="button"><img src="image00081.jpeg" alt="Helyi étterem ételek" loading="lazy"></button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <img src="logo.png" alt="Hana’s Place" loading="lazy">
+            <p data-lang="footer_tagline">Családias tengerparti apartmanok Žaborićban, Šibenik mellett.</p>
+        </div>
+        <div>
+            <h3 data-lang="footer_apartments">Apartmanok</h3>
+            <ul>
+                <li><a href="apartman1.html" data-lang="apartment1">Apartman 1</a></li>
+                <li><a href="apartman2.html" data-lang="apartment2">Apartman 2</a></li>
+                <li><a href="apartman3.html" data-lang="apartment3">Apartman 3</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 data-lang="footer_explore">Felfedezés</h3>
+            <ul>
+                <li><a href="programok.html" data-lang="programs">Programok a közelben</a></li>
+                <li><a href="galéria.html" data-lang="gallery">Galéria</a></li>
+                <li><a href="kapcsolat.html" data-lang="contact">Kapcsolat</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 data-lang="contact">Kapcsolat</h3>
+            <ul>
+                <li><a href="mailto:apartman.hanasplace@gmail.com">apartman.hanasplace@gmail.com</a></li>
+                <li><a href="tel:+36303914439">+36 30 391 4439</a></li>
+                <li>Jasenova ulica 10, 22010 Žaborić</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <span>© <span id="year">2026</span> Hana’s Place, Žaborić</span>
+        <nav aria-label="Jogi információk">
+            <a href="terms_hu.html" data-legal="terms" data-lang="legal_terms">Általános szerződési feltételek</a>
+            <a href="cookie_policy_hu.html" data-legal="cookie_policy" data-lang="legal_cookie">Sütik szabályzata</a>
+        </nav>
+    </div>
+</footer>
+<script src="script.js"></script>
+<script src="site.js"></script>
+<script>
+    // Add gallery translations to script.js if needed
+    if (typeof translations !== 'undefined') {
+        translations.hu.gallery = "Galéria";
+        translations.hu.gallery_title = "Galéria";
+        translations.hu.gallery_intro = "Tekintse meg apartmanjaink és környékünk képeit! Kattintson a képekre a nagyításhoz.";
+        translations.en.gallery = "Gallery";
+        translations.en.gallery_title = "Gallery";
+        translations.en.gallery_intro = "See photos of our apartments and surroundings! Click on the images to enlarge.";
+        translations.de.gallery = "Galerie";
+        translations.de.gallery_title = "Galerie";
+        translations.de.gallery_intro = "Sehen Sie Fotos unserer Apartments und Umgebung! Klicken Sie auf die Bilder zum Vergrößern.";
+        translations.hr.gallery = "Galerija";
+        translations.hr.gallery_title = "Galerija";
+        translations.hr.gallery_intro = "Pogledajte slike naših apartmana i okoline! Kliknite na slike za povećanje.";
+    }
+</script>
+</body>
+</html>
